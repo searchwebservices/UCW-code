@@ -27,7 +27,7 @@ const Navbar = () => {
     <div
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500",
-        isOpen ? "h-screen bg-background" : "h-20 bg-background/60 backdrop-blur-md border-b border-[#087B97]/5"
+        isOpen ? "h-screen bg-background" : "bg-white/70 backdrop-blur-xl border-b border-black/[0.03]"
       )}
     >
       <nav className="relative w-full h-full flex flex-col">
