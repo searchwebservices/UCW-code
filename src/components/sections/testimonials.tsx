@@ -1,16 +1,40 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Nicole & Chris",
+    quote: "Luba was an absolute dream wedding planner! From start to finish, she poured her heart and soul into creating the most magical weekend for my husband and me. Her attention to detail was impeccable, and her genuine care and love shone through in every aspect of the planning process.",
+    avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/ndCVk6rKR5v30867HJbYSwpk-15.jpeg"
+  },
+  {
+    id: 2,
+    name: "Victoria & Patrick",
+    quote: "We couldn't have asked for a better experience. Every single detail was handled with such grace and professionalism. Our guests are still talking about how beautiful everything was! Luba truly understands how to bring a vision to life while keeping the stress away from the couple.",
+    avatar: "https://framerusercontent.com/images/XLD03kUKZlCdojErniAePm2L7w.png"
+  },
+  {
+    id: 3,
+    name: "Megan & Michael",
+    quote: "The team exceeded all our expectations. They were organized, creative, and so supportive throughout the entire journey. We felt completely taken care of and could truly enjoy our special day knowing every detail was in perfect hands. Highly recommend to any couple!",
+    avatar: "https://framerusercontent.com/images/ndCVk6rKR5v30867HJbYSwpk-14.jpeg"
+  }
+];
 
 const Testimonials = () => {
-  // Testimonial data
-  const testimonials = [
-    {
-      id: 1,
-      name: "Nicole & Chris",
-      quote: "Luba was an absolute dream wedding planner! From start to finish, she poured her heart and soul into creating the most magical weekend for my husband and me. Her attention to detail was impeccable, and her genuine care and love shone through in every aspect of the planning process.",
-      avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/ndCVk6rKR5v30867HJbYSwpk-15.jpeg"
-    }
-  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 20000); // 20 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="bg-[#F5F1EB] py-[120px] md:py-[160px] overflow-hidden">
@@ -42,48 +66,68 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonial Quote */}
-        <div className="max-w-[800px] mx-auto mb-12">
-          <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-[#4D4D4D]">
-            {testimonials[0].quote}
-          </p>
+        <div className="max-w-[800px] mx-auto mb-12 min-h-[120px] flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={activeIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-[#4D4D4D]"
+            >
+              {testimonials[activeIndex].quote}
+            </motion.p>
+          </AnimatePresence>
         </div>
 
         {/* Avatars Row */}
         <div className="flex items-center justify-center gap-3">
-          {/* Active Testimonial Badge */}
-          <div className="flex items-center bg-[#087B97] rounded-full pl-1 pr-4 py-1 gap-3 transition-all duration-300">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20">
-              <Image
-                src={testimonials[0].avatar}
-                alt={testimonials[0].name}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <span className="text-white text-[13px] font-semibold tracking-wide">
-              {testimonials[0].name}
-            </span>
-          </div>
-
-          {/* Other Profile Avatars (Inactive/Toggle style) */}
-          <div className="w-9 h-9 rounded-full overflow-hidden grayscale cursor-pointer opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300 relative border border-[#CAC6C0]">
-             <div className="absolute inset-0 bg-black/10"></div>
-             <Image
-                src="https://framerusercontent.com/images/XLD03kUKZlCdojErniAePm2L7w.png"
-                alt="Couple"
-                fill
-                className="object-cover"
-              />
-          </div>
-          <div className="w-9 h-9 rounded-full overflow-hidden grayscale cursor-pointer opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300 relative border border-[#CAC6C0]">
-             <div className="absolute inset-0 bg-black/10"></div>
-             <Image
-                src="https://framerusercontent.com/images/ndCVk6rKR5v30867HJbYSwpk-14.jpeg"
-                alt="Couple"
-                fill
-                className="object-cover"
-              />
-          </div>
+          <AnimatePresence mode="popLayout" initial={false}>
+            {testimonials.map((testimonial, index) => {
+              if (index === activeIndex) {
+                return (
+                  <motion.div
+                    key={`active-${testimonial.id}`}
+                    layoutId="active-badge"
+                    className="flex items-center bg-[#087B97] rounded-full pl-1 pr-4 py-1 gap-3 z-10"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20">
+                      <Image
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <span className="text-white text-[13px] font-semibold tracking-wide whitespace-nowrap">
+                      {testimonial.name}
+                    </span>
+                  </motion.div>
+                );
+              }
+              return (
+                <motion.div
+                  key={`inactive-${testimonial.id}`}
+                  onClick={() => setActiveIndex(index)}
+                  className="w-9 h-9 rounded-full overflow-hidden grayscale cursor-pointer opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300 relative border border-[#CAC6C0]"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="absolute inset-0 bg-black/10"></div>
+                  <Image
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
     </section>
