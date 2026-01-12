@@ -2,14 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 
 const ConciergeSection = () => {
-  const conciergeImages = [
+    const conciergeImages = [
     {
       src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/uyhUcNs1cqxJMI4DbhUNo9OvKY-11.jpg",
       alt: "ATV excursion in Cabo"
     },
     {
-      src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/TGtSi9ctLphdpnso68cDoOn92w-12.png",
-      alt: "Scuba diving experience"
+      src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/image-1768252197222.png?width=8000&height=8000&resize=contain",
+      alt: "Snorkeling experience in Cabo"
     },
     {
       src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/XPqF9QRPoPgi3Nxqq8CD7KljrFw-13.png",
