@@ -77,11 +77,14 @@ export default function WhyUs() {
 
             {/* Foreground Arch Image (Right/Center) - Swapped to Venue */}
             <motion.div 
-              style={{ y: yFront }}
+              style={{ 
+                y: yFront,
+                borderRadius: '400px 400px 0 0' 
+              }}
               className="relative mt-24 md:mt-32 w-[65%] md:w-[70%] z-10 shadow-2xl"
             >
               <div 
-                className="relative aspect-[3/4] overflow-hidden bg-white"
+                className="relative aspect-[3/4] overflow-hidden"
                 style={{ borderRadius: '400px 400px 0 0' }}
               >
                 <Image
