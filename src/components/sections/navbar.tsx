@@ -26,9 +26,9 @@ const Navbar = () => {
   return (
     <div
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-500",
-        isOpen ? "h-screen bg-background" : "bg-white/70 backdrop-blur-xl border-b border-black/[0.03]"
-      )}
+      "fixed top-0 left-0 w-full z-50 transition-all duration-500",
+      isOpen ? "h-screen bg-background" : ""
+    )}
     >
       <nav className="relative w-full h-full flex flex-col">
         {/* Main Header Bar */}
