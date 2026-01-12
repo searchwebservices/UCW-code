@@ -1,26 +1,24 @@
 import React from 'react';
 
 const ServicesSection = () => {
-  const services = [
-    {
-      title: "Wedding Planning & Coordination",
-      description: "From venue selection to vendor management, we orchestrate every element of your Cabo wedding with precision and care. Our comprehensive planning services ensure a seamless celebration tailored to your unique vision, budget, and guest experience goals.",
-      subItems: [
-        {
-          title: "Venue & Vendor Curation",
-          content: "We work exclusively with premier wedding venues and trusted vendors—photographers, videographers, caterers, florists, and musicians. Our established relationships ensure you receive the highest quality services at competitive rates with preferred booking access."
-        }
-      ]
-    },
-    {
-      title: "Design & Styling Services",
-      description: "Our creative team designs cohesive wedding aesthetics that reflect your personal style. Whether you envision an elegant beachfront setup, a romantic hacienda celebration, or a modern luxury affair, we bring your vision to life with attention to every visual detail."
-    },
-    {
-      title: "Complete Guest Experience",
-      description: "Your wedding is more than one day—it's an experience. We coordinate transportation, accommodations, welcome dinners, group excursions, spa days, and farewell brunches to ensure your guests have an unforgettable Los Cabos getaway from arrival to departure."
-    }
-  ];
+    const services = [
+      {
+        title: "Wedding Planning & Coordination",
+        description: "From venue selection to vendor management, we orchestrate every element of your Cabo wedding with precision and care. Our comprehensive planning services ensure a seamless celebration tailored to your unique vision, budget, and guest experience goals.",
+      },
+      {
+        title: "Venue & Vendor Curation",
+        description: "We work exclusively with premier wedding venues and trusted vendors—photographers, videographers, caterers, florists, and musicians. Our established relationships ensure you receive the highest quality services at competitive rates with preferred booking access."
+      },
+      {
+        title: "Design & Styling Services",
+        description: "Our creative team designs cohesive wedding aesthetics that reflect your personal style. Whether you envision an elegant beachfront setup, a romantic hacienda celebration, or a modern luxury affair, we bring your vision to life with attention to every visual detail."
+      },
+      {
+        title: "Complete Guest Experience",
+        description: "Your wedding is more than one day—it's an experience. We coordinate transportation, accommodations, welcome dinners, group excursions, spa days, and farewell brunches to ensure your guests have an unforgettable Los Cabos getaway from arrival to departure."
+      }
+    ];
 
   return (
     <section className="bg-[#F5F1EB] py-[120px] md:py-[160px]">
@@ -56,18 +54,6 @@ const ServicesSection = () => {
                     <p className="font-sans text-[18px] leading-[1.6] text-[#4D4D4D] max-w-2xl">
                       {service.description}
                     </p>
-
-                    {/* Sub-items if any */}
-                    {service.subItems && service.subItems.map((sub, sIdx) => (
-                      <div key={sIdx} className="mt-10 pt-10 border-t border-[#CAC6C0]">
-                        <h4 className="font-display text-[24px] mb-4 text-[#000000]">
-                          {sub.title}
-                        </h4>
-                        <p className="font-sans text-[16px] leading-[1.6] text-[#4D4D4D] max-w-2xl">
-                          {sub.content}
-                        </p>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
