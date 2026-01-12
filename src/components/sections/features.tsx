@@ -22,12 +22,12 @@ const Features = () => {
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Title Area */}
-        <div className="mb-20">
-          <p className="label-accent mb-4">Features</p>
-          <h2 className="text-[40px] md:text-[56px] lg:text-[64px] leading-[1.1] text-black max-w-[800px]">
-            Why Choose Unique Cabo Weddings
-          </h2>
-        </div>
+          <div className="mb-20">
+            <p className="label-accent mb-4">Features</p>
+            <h2 className="text-[32px] md:text-[56px] lg:text-[64px] leading-[1.1] text-black max-w-[800px]">
+              Why Choose Unique Cabo Weddings
+            </h2>
+          </div>
 
         {/* Feature Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">

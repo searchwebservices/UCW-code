@@ -17,9 +17,9 @@ export default function WhyUs() {
           <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
             <span className="label-accent mb-6">WHY US ?</span>
             
-            <h2 className="text-[40px] md:text-[64px] font-display leading-[1.1] text-black mb-8">
-              Feeling Overwhelmed?
-            </h2>
+              <h2 className="text-[32px] md:text-[64px] font-display leading-[1.1] text-black mb-8">
+                Feeling Overwhelmed?
+              </h2>
             
             <div className="max-w-[540px]">
               <p className="text-[#4D4D4D] text-[18px] leading-[1.7] mb-6 font-sans">

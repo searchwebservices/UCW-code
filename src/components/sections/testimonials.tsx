@@ -21,7 +21,7 @@ const Testimonials = () => {
         </span>
 
         {/* Heading */}
-        <h2 className="font-display text-[40px] md:text-[64px] leading-[1.1] text-black mb-10 md:mb-12">
+        <h2 className="font-display text-[32px] md:text-[64px] leading-[1.1] text-black mb-10 md:mb-12">
           Hear from our satisfied customers
         </h2>
 

@@ -46,24 +46,26 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Menu Toggle - Now on the Right */}
-            <div className="flex items-center">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="group flex items-center gap-2 focus:outline-none"
-              >
-                <span className="text-[1.5rem] md:text-[2rem] font-bold tracking-[0.1em] text-[#087B97] leading-none uppercase">
-                  {isOpen ? "CLOSE" : "MENU"}
-                </span>
-                <div className="relative w-6 h-6 flex items-center justify-center">
-                  {isOpen ? (
-                    <X size={28} strokeWidth={2.5} className="text-[#087B97]" />
-                  ) : (
-                    <Plus size={28} strokeWidth={2.5} className="text-[#087B97]" />
-                  )}
-                </div>
-              </button>
-            </div>
+              {/* Menu Toggle - Now on the Right */}
+              <div className="flex items-center">
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="group flex items-center gap-2 focus:outline-none"
+                >
+                  <div className="w-[80px] md:w-[120px] text-right">
+                    <span className="text-[1.25rem] md:text-[2rem] font-bold tracking-[0.1em] text-[#087B97] leading-none uppercase">
+                      {isOpen ? "CLOSE" : "MENU"}
+                    </span>
+                  </div>
+                  <div className="relative w-6 h-6 flex items-center justify-center">
+                    {isOpen ? (
+                      <X size={24} strokeWidth={2.5} className="text-[#087B97]" />
+                    ) : (
+                      <Plus size={24} strokeWidth={2.5} className="text-[#087B97]" />
+                    )}
+                  </div>
+                </button>
+              </div>
           </div>
 
         {/* Expanded Navigation Overlay */}

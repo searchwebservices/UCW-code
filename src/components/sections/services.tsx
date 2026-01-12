@@ -30,9 +30,9 @@ const ServicesSection = () => {
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#087B97] mb-6">
             EXCELLENCE IS OUR STANDARD
           </p>
-          <h2 className="font-display text-[48px] md:text-[64px] lg:text-[72px] leading-[1.1] text-[#000000]">
-            What we offer
-          </h2>
+            <h2 className="font-display text-[36px] md:text-[64px] lg:text-[72px] leading-[1.1] text-[#000000]">
+              What we offer
+            </h2>
         </div>
 
         {/* Services List */}

@@ -23,15 +23,17 @@ import Image from 'next/image';
     >
       {/* Background Image with Built-in Blend */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={heroImageUrl}
-          alt="Bride and Groom in Cabo"
-          fill
-          priority
-          className="object-cover object-right md:object-right"
-          sizes="100vw"
-        />
-      </div>
+          <Image
+            src={heroImageUrl}
+            alt="Bride and Groom in Cabo"
+            fill
+            priority
+            className="object-cover object-[75%_center] md:object-right"
+            sizes="100vw"
+          />
+          {/* Mobile Gradient for Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent md:hidden" />
+        </div>
 
       {/* Content Overlay */}
       <div className="container relative z-10 px-8 md:px-[60px]">
@@ -45,11 +47,11 @@ import Image from 'next/image';
 
           {/* Headline */}
           <div className="space-y-0 mb-10">
-            <h1 className="font-display text-[64px] md:text-[88px] lg:text-[110px] leading-[0.95] text-black animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-              Your Dream<br />
-              Cabo Wedding<br />
-              Starts Here
-            </h1>
+            <h1 className="font-display text-5xl sm:text-6xl md:text-8xl lg:text-[110px] leading-[0.95] text-black animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+                Your Dream<br />
+                Cabo Wedding<br />
+                Starts Here
+              </h1>
           </div>
 
           {/* CTA Link */}
