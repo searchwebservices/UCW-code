@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuLinks = [
-    { name: "ABOUT", href: "/about" },
-    { name: "Portfolio", href: "/work" },
-    { name: "Blog", href: "/concierge" },
-    { name: "CONTACT", href: "/contact" },
-  ];
+    const menuLinks = [
+      { name: "ABOUT", href: "/about" },
+      { name: "Portfolio", href: "/portfolio" },
+      { name: "Blog", href: "/concierge" },
+      { name: "CONTACT", href: "/contact" },
+    ];
 
   const socialLinks = [
     { name: "Instagram", href: "https://www.instagram.com/" },

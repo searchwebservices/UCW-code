@@ -92,7 +92,7 @@ const OffersSection: React.FC = () => {
         {/* Action Link */}
         <div className="mt-[60px]">
           <a 
-            href="/work" 
+            href="/portfolio" 
             className="nav-label inline-flex items-center gap-2 group text-[#1A1A1A] hover:text-[#087D9F] transition-colors duration-300"
           >
             <span>SEE OUR PROJECTS</span>

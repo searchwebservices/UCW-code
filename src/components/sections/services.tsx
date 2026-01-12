@@ -67,7 +67,7 @@ const ServicesSection = () => {
         {/* See our projects Link */}
         <div className="mt-16 md:mt-20">
           <a 
-            href="/work" 
+            href="/portfolio" 
             className="inline-flex items-center gap-2 group cursor-pointer"
           >
             <span className="text-[12px] font-bold uppercase tracking-[0.15em] text-[#000000] border-b border-[#000000] pb-1 transition-opacity group-hover:opacity-70">

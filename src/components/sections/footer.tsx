@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { Instagram, MessageSquare, Clock, Phone, Mail, MapPin, ChevronUp } from 'lucide-react';
 
 const Footer = () => {
-  const menuItems = [
-    { id: '01', title: 'Home', href: '/' },
-    { id: '02', title: 'About', href: '/about' },
-    { id: '03', title: 'Portfolio', href: '/work' },
-    { id: '04', title: 'Concierge', href: '/concierge' },
-    { id: '05', title: 'Contact', href: '/contact' },
-  ];
+    const menuItems = [
+      { id: '01', title: 'Home', href: '/' },
+      { id: '02', title: 'About', href: '/about' },
+      { id: '03', title: 'Portfolio', href: '/portfolio' },
+      { id: '04', title: 'Concierge', href: '/concierge' },
+      { id: '05', title: 'Contact', href: '/contact' },
+    ];
 
   const weddingImage = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/kojZPhMCdhxwHSHz8RU6IyF2S4-16.jpg";
 
