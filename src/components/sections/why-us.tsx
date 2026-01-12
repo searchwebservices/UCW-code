@@ -1,15 +1,29 @@
-import React from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 /**
  * WhyUs Section Component
  * 
  * Clones the "Feeling Overwhelmed?" section with architectural arch images
- * and editorial layout. 
+ * and editorial layout. Features a parallax effect on the images.
  */
 export default function WhyUs() {
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Back image (Couple) scrolls less than the page (moves down slightly relative to content)
+  const yBack = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  // Front image (Venue) scrolls more than the page (moves up faster relative to content)
+  const yFront = useTransform(scrollYProgress, [0, 1], [0, -150]);
+
   return (
-    <section className="bg-[#F5F1EB] py-[120px] md:py-[160px] overflow-hidden">
+    <section ref={containerRef} className="bg-[#F5F1EB] py-[120px] md:py-[160px] overflow-hidden">
       <div className="container max-w-[1400px] mx-auto px-8 md:px-16">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-24">
           
@@ -40,28 +54,15 @@ export default function WhyUs() {
             </a>
           </div>
 
-          {/* Right Image Column (Overlapping Arches) */}
+          {/* Right Image Column (Overlapping Arches with Parallax) */}
           <div className="w-full lg:w-1/2 relative min-h-[500px] md:min-h-[700px] flex justify-center lg:justify-end mt-12 lg:mt-0">
-            {/* Background Arch Image (Left) */}
-            <div className="absolute left-[-20px] md:left-0 top-0 w-[65%] md:w-[70%] z-0">
+            {/* Background Arch Image (Left) - Swapped to Couple */}
+            <motion.div 
+              style={{ y: yBack }}
+              className="absolute left-[-20px] md:left-0 top-0 w-[65%] md:w-[70%] z-0"
+            >
               <div 
                 className="relative aspect-[3/4] overflow-hidden"
-                style={{ borderRadius: '400px 400px 0 0' }}
-              >
-                <Image
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/kmLmH5iT0lAfJ0UtIOXdfdB1w-4.jpg"
-                  alt="Wedding Venue Arch"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 60vw, 35vw"
-                />
-              </div>
-            </div>
-
-            {/* Foreground Arch Image (Right/Center) */}
-            <div className="relative mt-24 md:mt-32 w-[65%] md:w-[70%] z-10 shadow-2xl">
-              <div 
-                className="relative aspect-[3/4] overflow-hidden bg-white"
                 style={{ borderRadius: '400px 400px 0 0' }}
               >
                 <Image
@@ -72,7 +73,26 @@ export default function WhyUs() {
                   sizes="(max-width: 768px) 60vw, 35vw"
                 />
               </div>
-            </div>
+            </motion.div>
+
+            {/* Foreground Arch Image (Right/Center) - Swapped to Venue */}
+            <motion.div 
+              style={{ y: yFront }}
+              className="relative mt-24 md:mt-32 w-[65%] md:w-[70%] z-10 shadow-2xl"
+            >
+              <div 
+                className="relative aspect-[3/4] overflow-hidden bg-white"
+                style={{ borderRadius: '400px 400px 0 0' }}
+              >
+                <Image
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/kmLmH5iT0lAfJ0UtIOXdfdB1w-4.jpg"
+                  alt="Wedding Venue Arch"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 60vw, 35vw"
+                />
+              </div>
+            </motion.div>
           </div>
 
         </div>
