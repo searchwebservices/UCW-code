@@ -32,65 +32,39 @@ const Navbar = () => {
     >
       <nav className="relative w-full h-full flex flex-col">
         {/* Main Header Bar */}
-        <div className="flex items-center justify-between px-8 md:px-[60px] py-[22px] w-full relative z-50">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <div className="relative w-[60px] h-[60px] md:w-[83px] md:h-[82px]">
-              <Image
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/WNtvMo5tp5fgOGST3T3zn7s0R1c-1.png"
-                alt="Unique Cabo Weddings"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </Link>
+          <div className="flex items-center justify-between px-8 md:px-[60px] py-[22px] w-full relative z-50">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0">
+              <div className="relative w-[60px] h-[60px] md:w-[83px] md:h-[82px]">
+                <Image
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/WNtvMo5tp5fgOGST3T3zn7s0R1c-1.png"
+                  alt="Unique Cabo Weddings"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
 
-          {/* Centered Menu Toggle */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="group flex items-center gap-1 focus:outline-none"
-            >
-              <div className="flex overflow-hidden h-[24px] items-center">
-                <div
-                  className={cn(
-                    "flex flex-col transition-transform duration-500 ease-in-out",
-                    isOpen ? "-translate-y-1/2" : "translate-y-0"
+            {/* Menu Toggle - Now on the Right */}
+            <div className="flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="group flex items-center gap-2 focus:outline-none"
+              >
+                <span className="text-[1.5rem] md:text-[2rem] font-bold tracking-[0.1em] text-[#087B97] leading-none uppercase">
+                  {isOpen ? "CLOSE" : "MENU"}
+                </span>
+                <div className="relative w-6 h-6 flex items-center justify-center">
+                  {isOpen ? (
+                    <X size={28} strokeWidth={2.5} className="text-[#087B97]" />
+                  ) : (
+                    <Plus size={28} strokeWidth={2.5} className="text-[#087B97]" />
                   )}
-                >
-                  <span className="text-[1.25rem] font-bold tracking-[0.2em] text-[#087B97] leading-none">
-                    MENU
-                  </span>
-                  <span className="text-[1.25rem] font-bold tracking-[0.2em] text-[#087B97] leading-none">
-                    CLOSE
-                  </span>
                 </div>
-              </div>
-              <div className="relative w-5 h-5 flex items-center justify-center">
-                <span
-                  className={cn(
-                    "absolute transition-all duration-500 text-[#087B97]",
-                    isOpen ? "rotate-45 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"
-                  )}
-                >
-                  <Plus size={20} strokeWidth={3} />
-                </span>
-                <span
-                  className={cn(
-                    "absolute transition-all duration-500 text-[#087B97]",
-                    isOpen ? "rotate-0 scale-100 opacity-100" : "-rotate-45 scale-0 opacity-0"
-                  )}
-                >
-                  <X size={20} strokeWidth={3} />
-                </span>
-              </div>
-            </button>
+              </button>
+            </div>
           </div>
-
-          {/* Desktop Right Spacer (to keep menu centered) */}
-          <div className="w-[83px] hidden md:block"></div>
-        </div>
 
         {/* Expanded Navigation Overlay */}
         <div
