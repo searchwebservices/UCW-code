@@ -23,29 +23,36 @@ export default function PortfolioPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
             {portfolioWeddings.map((wedding) => (
-              <Link 
-                key={wedding.slug} 
-                href={`/portfolio/${wedding.slug}`}
-                className="group flex flex-col"
-              >
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#EBE6DF] mb-6">
-                  <Image
-                    src={wedding.heroImage.src}
-                    alt={wedding.heroImage.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="font-display text-[24px] text-black mb-2 group-hover:italic transition-all">
-                    {wedding.title}
-                  </h3>
-                  <span className="text-[12px] font-bold uppercase tracking-[0.15em] text-[#4D4D4D]">
-                    View Project
+              <div key={wedding.slug} className="flex flex-col">
+                <div className="flex flex-col items-center mb-8">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#4D4D4D] mb-4">
+                    Gallery
                   </span>
+                  <div className="w-16 h-[1px] bg-[#4D4D4D]/20 mb-8" />
+                  <Link 
+                    href={`/portfolio/${wedding.slug}`}
+                    className="group relative aspect-[3/4] w-full overflow-hidden bg-[#EBE6DF]"
+                  >
+                    <Image
+                      src={wedding.heroImage.src}
+                      alt={wedding.heroImage.alt}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </Link>
                 </div>
-              </Link>
+                <div className="flex flex-col items-center text-center px-4">
+                  <Link href={`/portfolio/${wedding.slug}`}>
+                    <h3 className="font-display text-[28px] text-black mb-4 hover:italic transition-all">
+                      {wedding.title}
+                    </h3>
+                  </Link>
+                  <p className="font-display text-[15px] leading-relaxed text-[#4D4D4D] italic">
+                    {wedding.description}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

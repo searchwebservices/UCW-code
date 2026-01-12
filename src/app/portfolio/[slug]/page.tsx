@@ -32,10 +32,13 @@ export default async function PortfolioPage({ params }: PageProps) {
       <section className="pt-32 pb-16">
         <div className="container mx-auto max-w-[1400px] px-4 md:px-8">
           <div className="text-center mb-12">
-            <h1 className="font-display text-[2.5rem] md:text-[4rem] leading-[1.1] mb-6">
-              {wedding.title}
-            </h1>
-            <div className="flex flex-col items-center gap-1 text-[13px] text-[#4D4D4D]">
+              <h1 className="font-display text-[2.5rem] md:text-[4rem] leading-[1.1] mb-6">
+                {wedding.title}
+              </h1>
+              <p className="font-display text-[18px] text-[#4D4D4D] italic max-w-2xl mx-auto mb-8">
+                {wedding.description}
+              </p>
+              <div className="flex flex-col items-center gap-1 text-[13px] text-[#4D4D4D]">
               <p>Flower Design: {wedding.flowerDesign}</p>
               <p>Photography: {wedding.photography}</p>
               <p>Wedding Planner and Design: {wedding.planner}</p>
