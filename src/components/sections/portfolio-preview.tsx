@@ -30,15 +30,15 @@ export default function PortfolioPreview() {
               className="flex flex-col items-center group cursor-pointer"
             >
               {/* Image Container with specific vertical aspect ratio */}
-              <div className="relative w-full aspect-[2/3] overflow-hidden bg-[#EBE6DF]">
-                <Image
-                  src={item.heroImage.src}
-                  alt={item.heroImage.alt}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
+                <div className="relative w-full aspect-[2/3] overflow-hidden bg-[#EBE6DF]">
+                  <Image
+                    src={item.heroImage?.src || "https://placehold.co/800x1200?text=Image+Not+Found"}
+                    alt={item.heroImage?.alt || item.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
               
               {/* Couple Name - Captioned below */}
               <div className="mt-8 text-center">

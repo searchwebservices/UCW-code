@@ -29,19 +29,19 @@ export default function PortfolioPage() {
                       Gallery
                     </span>
                     <div className="w-16 h-[1px] bg-[#4D4D4D]/20 mb-8" />
-                    <Link 
-                      href={`/portfolio/${wedding.slug}`}
-                      className="group relative aspect-[3/4] w-full overflow-hidden bg-[#EBE6DF]"
-                    >
-                      <Image
-                        src={wedding.heroImage.src}
-                        alt={wedding.heroImage.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        priority={index < 3}
-                      />
-                    </Link>
+                      <Link 
+                        href={`/portfolio/${wedding.slug}`}
+                        className="group relative aspect-[3/4] w-full overflow-hidden bg-[#EBE6DF]"
+                      >
+                        <Image
+                          src={wedding.heroImage?.src || "https://placehold.co/800x1200?text=Image+Not+Found"}
+                          alt={wedding.heroImage?.alt || wedding.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          priority={index < 3}
+                        />
+                      </Link>
                   </div>
                 <div className="flex flex-col items-center text-center px-4">
                   <Link href={`/portfolio/${wedding.slug}`}>

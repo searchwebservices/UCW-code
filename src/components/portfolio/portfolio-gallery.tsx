@@ -26,8 +26,8 @@ export default function PortfolioGallery({ wedding }: PortfolioGalleryProps) {
     <>
       <div className="relative w-full aspect-[16/8] mb-4 overflow-hidden group">
         <Image
-          src={wedding.heroImage.src}
-          alt={wedding.heroImage.alt}
+          src={wedding.heroImage?.src || "https://placehold.co/1200x600?text=Image+Not+Found"}
+          alt={wedding.heroImage?.alt || "Wedding Image"}
           fill
           className="object-cover cursor-pointer transition-transform duration-500 group-hover:scale-105"
           onClick={() => openLightbox(0)}
@@ -175,18 +175,18 @@ export default function PortfolioGallery({ wedding }: PortfolioGalleryProps) {
           >
             <X size={32} />
           </button>
-          <div className="relative w-full max-w-5xl h-[80vh] mx-4">
-            <Image
-              src={lightboxIndex === 0 ? wedding.heroImage.src : wedding.gallery[lightboxIndex - 1]?.src || wedding.heroImage.src}
-              alt="Gallery image"
-              fill
-              className="object-contain"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm">
-            {lightboxIndex + 1} / {wedding.gallery.length + 1}
-          </div>
+            <div className="relative w-full max-w-5xl h-[80vh] mx-4">
+              <Image
+                src={lightboxIndex === 0 ? (wedding.heroImage?.src || "") : (wedding.gallery[lightboxIndex - 1]?.src || wedding.heroImage?.src || "")}
+                alt="Gallery image"
+                fill
+                className="object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm">
+              {lightboxIndex + 1} / {(wedding.gallery?.length || 0) + 1}
+            </div>
         </div>
       )}
     </>
@@ -208,8 +208,8 @@ function GalleryImage({
       onClick={onClick}
     >
       <Image
-        src={image.src}
-        alt={image.alt}
+        src={image?.src || "https://placehold.co/800x1000?text=Image+Not+Found"}
+        alt={image?.alt || "Gallery image"}
         fill
         className="object-cover transition-transform duration-500 group-hover:scale-105"
       />

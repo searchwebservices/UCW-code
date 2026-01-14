@@ -8,8 +8,13 @@ import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = React.useState(false);
 
-    const menuLinks = [
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const menuLinks = [
       { name: "ABOUT", href: "/about" },
       { name: "Portfolio", href: "/portfolio" },
       { name: "Blog", href: "/concierge" },
@@ -26,8 +31,8 @@ const Navbar = () => {
   return (
     <div
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-500 pointer-events-none",
-        isOpen ? "h-screen bg-background pointer-events-auto" : ""
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500",
+        !mounted ? "pointer-events-none" : (isOpen ? "h-screen bg-background pointer-events-auto" : "pointer-events-none")
       )}
     >
       <nav className="relative w-full h-full flex flex-col">
