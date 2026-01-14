@@ -18,7 +18,7 @@ export default function ContactForm() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
@@ -27,9 +27,11 @@ export default function ContactForm() {
       if (response.ok) {
         router.push("/contact/success");
       } else {
+        console.error("Form submission failed with status:", response.status);
         throw new Error("Form submission failed");
       }
     } catch (err) {
+      console.error("Form submission error:", err);
       setError("Something went wrong. Please try again or contact us directly.");
       setIsSubmitting(false);
     }
