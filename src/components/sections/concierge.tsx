@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 
 const ConciergeSection = () => {
-    const conciergeImages = [
+  const conciergeImages = [
     {
-      src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/uyhUcNs1cqxJMI4DbhUNo9OvKY-11.jpg",
+      src: "https://i.imgur.com/tgrwVjS.jpeg",
       alt: "ATV excursion in Cabo"
     },
     {
@@ -22,7 +22,12 @@ const ConciergeSection = () => {
   ];
 
   return (
-    <section className="bg-[#F5F1EB] py-[80px] md:py-[120px] lg:py-[160px] overflow-hidden">
+    <a 
+      href="https://uniqueconcierge.netlify.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block bg-[#F5F1EB] py-[80px] md:py-[120px] lg:py-[160px] overflow-hidden group cursor-pointer transition-colors hover:bg-[#EDE9E3]"
+    >
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-[1400px]">
         {/* Top Header Label */}
         <div className="mb-12">
@@ -48,10 +53,32 @@ const ConciergeSection = () => {
               </p>
             </div>
             
-            <div className="pt-8">
+            <div className="pt-8 space-y-6">
               <h3 className="font-display text-[32px] md:text-[40px] text-black font-semibold tracking-tight">
                 Unique Cabo Concierge
               </h3>
+              
+              {/* CTA Button */}
+              <div 
+                className="inline-flex items-center gap-3 bg-[#087B97] text-white px-8 py-4 rounded-sm font-sans text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-300 group-hover:bg-[#065a70] group-hover:gap-5"
+              >
+                <span>Explore Services</span>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
             </div>
           </div>
 
@@ -67,7 +94,7 @@ const ConciergeSection = () => {
                   alt={image.alt}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             ))}
@@ -75,7 +102,7 @@ const ConciergeSection = () => {
 
         </div>
       </div>
-    </section>
+    </a>
   );
 };
 

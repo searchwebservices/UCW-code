@@ -15,17 +15,15 @@ const Navbar = () => {
   }, []);
 
   const menuLinks = [
-      { name: "ABOUT", href: "/about" },
-      { name: "Portfolio", href: "/portfolio" },
-      { name: "Blog", href: "/concierge" },
-      { name: "CONTACT", href: "/contact" },
-    ];
+    { name: "HOME", href: "/" },
+    { name: "PORTFOLIO", href: "/portfolio" },
+    { name: "CONTACT", href: "/contact" },
+    { name: "CONCIERGE", href: "https://uniqueconcierge.netlify.app/", external: true },
+  ];
 
-  const socialLinks = [
-    { name: "Instagram", href: "https://www.instagram.com/" },
-    { name: "Facebook", href: "https://www.facebook.com" },
-    { name: "Behance", href: "https://www.behance.net" },
-    { name: "Linkedin", href: "https://www.linkedin.com" },
+  const externalLinks = [
+    { name: "Instagram", href: "https://www.instagram.com/uniquecaboweddings/" },
+    { name: "Testimonials", href: "https://www.weddingwire.com/biz/unique-cabo-weddings/a93ce236a1751046.html" },
   ];
 
   return (
@@ -81,15 +79,49 @@ const Navbar = () => {
           )}
         >
           <div className="container mx-auto flex-grow flex flex-col justify-center items-center py-12">
-            
-            {/* Social Links (Top Row in Menu) */}
-            <div className="flex flex-col items-center mb-16 animate-in fade-in slide-in-from-top-4 duration-700 delay-100">
-              <span className="font-display italic text-lg text-[#444444] mb-4">Follow us</span>
-              <div className="flex gap-6">
-                {socialLinks.map((link) => (
+
+            {/* Primary Page Links */}
+            <div className="flex flex-col items-center gap-8 mb-16">
+              {menuLinks.map((link, index) => (
+                link.external ? (
                   <a
                     key={link.name}
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "text-[2rem] md:text-[3.5rem] font-sans font-medium tracking-[0.1em] uppercase hover:italic hover:text-[#087B97] transition-all duration-300",
+                      index % 2 === 0 ? "font-display italic" : "font-sans"
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={cn(
+                      "text-[2rem] md:text-[3.5rem] font-sans font-medium tracking-[0.1em] uppercase hover:italic hover:text-[#087B97] transition-all duration-300",
+                      index % 2 === 0 ? "font-display italic" : "font-sans"
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              ))}
+            </div>
+
+            {/* External Links (Smaller) */}
+            <div className="flex flex-col items-center mb-16 animate-in fade-in slide-in-from-top-4 duration-700 delay-100">
+              <div className="flex gap-8">
+                {externalLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-[0.75rem] font-semibold tracking-[0.1em] text-[#444444] uppercase hover:text-[#087B97] transition-colors"
                   >
                     {link.name}
@@ -98,27 +130,10 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Primary Page Links */}
-            <div className="flex flex-col items-center gap-8 mb-20">
-              {menuLinks.map((link, index) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "text-[2rem] md:text-[3.5rem] font-sans font-medium tracking-[0.1em] uppercase hover:italic hover:text-[#087B97] transition-all duration-300",
-                    index % 2 === 0 ? "font-display italic" : "font-sans"
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
             {/* Bottom Info Bar */}
             <div className="w-full max-w-5xl flex justify-between items-end border-t border-[#CAC6C0] pt-12 px-8">
               <div className="flex flex-col">
-                <span className="font-display italic text-xl text-[#444444]">Flower Lover</span>
+                <span className="font-display italic text-xl text-[#444444]">Unique Cabo Weddings</span>
               </div>
               <div className="text-[0.875rem] text-[#4D4D4D] font-sans">
                 © Copyright 2026

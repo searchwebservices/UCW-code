@@ -9,19 +9,19 @@ const testimonials = [
     id: 1,
     name: "Nicole & Chris",
     quote: "Luba was an absolute dream wedding planner! From start to finish, she poured her heart and soul into creating the most magical weekend for my husband and me. Her attention to detail was impeccable, and her genuine care and love shone through in every aspect of the planning process.",
-    avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/ndCVk6rKR5v30867HJbYSwpk-15.jpeg"
+    avatar: "https://i.imgur.com/rywyuYx.jpeg"
   },
   {
     id: 2,
     name: "Victoria & Patrick",
     quote: "We couldn't have asked for a better experience. Every single detail was handled with such grace and professionalism. Our guests are still talking about how beautiful everything was! Luba truly understands how to bring a vision to life while keeping the stress away from the couple.",
-    avatar: "https://framerusercontent.com/images/XLD03kUKZlCdojErniAePm2L7w.png"
+    avatar: "https://i.imgur.com/UWY8o3W.jpeg"
   },
   {
     id: 3,
     name: "Megan & Michael",
     quote: "The team exceeded all our expectations. They were organized, creative, and so supportive throughout the entire journey. We felt completely taken care of and could truly enjoy our special day knowing every detail was in perfect hands. Highly recommend to any couple!",
-    avatar: "https://framerusercontent.com/images/ndCVk6rKR5v30867HJbYSwpk-14.jpeg"
+    avatar: "https://i.imgur.com/nNPZlQy.jpeg"
   }
 ];
 
