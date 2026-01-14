@@ -26,13 +26,13 @@ const Navbar = () => {
   return (
     <div
       className={cn(
-      "fixed top-0 left-0 w-full z-50 transition-all duration-500",
-      isOpen ? "h-screen bg-background" : ""
-    )}
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 pointer-events-none",
+        isOpen ? "h-screen bg-background pointer-events-auto" : ""
+      )}
     >
       <nav className="relative w-full h-full flex flex-col">
         {/* Main Header Bar */}
-          <div className="flex items-center justify-between px-8 md:px-[60px] py-[22px] w-full relative z-50">
+        <div className="flex items-center justify-between px-8 md:px-[60px] py-[22px] w-full relative z-50 pointer-events-auto">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <div className="relative w-[60px] h-[60px] md:w-[83px] md:h-[82px]">
