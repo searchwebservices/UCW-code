@@ -55,15 +55,15 @@ export default function ContactForm() {
               </div>
 
               {/* Service */}
-              <div className="flex flex-col space-y-2">
-                <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground/60">Service</label>
-                <select className="bg-transparent border-b border-border py-2 focus:outline-none focus:border-accent transition-colors text-sm appearance-none cursor-pointer">
-                  <option value="" disabled selected>Select...</option>
-                  <option value="full-planning">Full Wedding Planning</option>
-                  <option value="partial-planning">Partial Planning</option>
-                  <option value="coordination">Month-of Coordination</option>
-                  <option value="concierge">Concierge Services</option>
-                </select>
+                <div className="flex flex-col space-y-2">
+                  <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground/60">Service</label>
+                    <select defaultValue="" className="bg-transparent border-b border-border py-2 focus:outline-none focus:border-accent transition-colors text-sm appearance-none cursor-pointer">
+                      <option value="" disabled>Select...</option>
+                      <option value="full-planning">Full Wedding Planning</option>
+                      <option value="partial-planning">Partial Planning</option>
+                      <option value="coordination">Month-of Coordination</option>
+                      <option value="concierge">Concierge Services</option>
+                    </select>
               </div>
 
               {/* Date of the Event */}
