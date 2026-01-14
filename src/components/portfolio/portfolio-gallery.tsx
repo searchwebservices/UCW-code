@@ -46,89 +46,111 @@ export default function PortfolioGallery({ wedding }: PortfolioGalleryProps) {
       </div>
 
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-4">
-          <GalleryImage 
-            image={wedding.gallery[0]} 
-            onClick={() => openLightbox(1)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
-        <div className="col-span-5">
-          <GalleryImage 
-            image={wedding.gallery[1]} 
-            onClick={() => openLightbox(2)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
-        <div className="col-span-3">
-          <GalleryImage 
-            image={wedding.gallery[2]} 
-            onClick={() => openLightbox(3)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
+        {wedding.gallery[0] && (
+          <div className="col-span-4">
+            <GalleryImage 
+              image={wedding.gallery[0]} 
+              onClick={() => openLightbox(1)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
+        {wedding.gallery[1] && (
+          <div className="col-span-5">
+            <GalleryImage 
+              image={wedding.gallery[1]} 
+              onClick={() => openLightbox(2)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
+        {wedding.gallery[2] && (
+          <div className="col-span-3">
+            <GalleryImage 
+              image={wedding.gallery[2]} 
+              onClick={() => openLightbox(3)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
 
-        <div className="col-span-6">
-          <GalleryImage 
-            image={wedding.gallery[3]} 
-            onClick={() => openLightbox(4)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
-        <div className="col-span-6">
-          <GalleryImage 
-            image={wedding.gallery[4]} 
-            onClick={() => openLightbox(5)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
+        {wedding.gallery[3] && (
+          <div className="col-span-6">
+            <GalleryImage 
+              image={wedding.gallery[3]} 
+              onClick={() => openLightbox(4)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
+        {wedding.gallery[4] && (
+          <div className="col-span-6">
+            <GalleryImage 
+              image={wedding.gallery[4]} 
+              onClick={() => openLightbox(5)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
 
-        <div className="col-span-4">
-          <GalleryImage 
-            image={wedding.gallery[5]} 
-            onClick={() => openLightbox(6)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
-        <div className="col-span-4">
-          <GalleryImage 
-            image={wedding.gallery[6]} 
-            onClick={() => openLightbox(7)} 
-            aspectClass="aspect-[5/6]"
-          />
-        </div>
-        <div className="col-span-4">
-          <GalleryImage 
-            image={wedding.gallery[7]} 
-            onClick={() => openLightbox(8)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
+        {wedding.gallery[5] && (
+          <div className="col-span-4">
+            <GalleryImage 
+              image={wedding.gallery[5]} 
+              onClick={() => openLightbox(6)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
+        {wedding.gallery[6] && (
+          <div className="col-span-4">
+            <GalleryImage 
+              image={wedding.gallery[6]} 
+              onClick={() => openLightbox(7)} 
+              aspectClass="aspect-[5/6]"
+            />
+          </div>
+        )}
+        {wedding.gallery[7] && (
+          <div className="col-span-4">
+            <GalleryImage 
+              image={wedding.gallery[7]} 
+              onClick={() => openLightbox(8)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
 
-        <div className="col-span-5">
-          <GalleryImage 
-            image={wedding.gallery[8]} 
-            onClick={() => openLightbox(9)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
-        <div className="col-span-7">
-          <GalleryImage 
-            image={wedding.gallery[9]} 
-            onClick={() => openLightbox(10)} 
-            aspectClass="aspect-[4/5]"
-          />
-        </div>
+        {wedding.gallery[8] && (
+          <div className="col-span-5">
+            <GalleryImage 
+              image={wedding.gallery[8]} 
+              onClick={() => openLightbox(9)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
+        {wedding.gallery[9] && (
+          <div className="col-span-7">
+            <GalleryImage 
+              image={wedding.gallery[9]} 
+              onClick={() => openLightbox(10)} 
+              aspectClass="aspect-[4/5]"
+            />
+          </div>
+        )}
 
         {wedding.gallery.length > 10 && (
           <>
-            <div className="col-span-4">
-              <GalleryImage 
-                image={wedding.gallery[10]} 
-                onClick={() => openLightbox(11)} 
-                aspectClass="aspect-[4/5]"
-              />
-            </div>
+            {wedding.gallery[10] && (
+              <div className="col-span-4">
+                <GalleryImage 
+                  image={wedding.gallery[10]} 
+                  onClick={() => openLightbox(11)} 
+                  aspectClass="aspect-[4/5]"
+                />
+              </div>
+            )}
             {wedding.gallery[11] && (
               <div className="col-span-8">
                 <GalleryImage 
