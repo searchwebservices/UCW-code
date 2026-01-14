@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const OverwhelmedSection = () => {
   return (
-    <section className="bg-[#F5F1EB] editorial-spacing overflow-hidden">
+    <section className="bg-[#F5F1EB] pt-[80px] md:pt-[120px] lg:pt-[160px] pb-0 overflow-hidden">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           
