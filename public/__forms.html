@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Netlify Forms Detection</title>
+</head>
+<body>
+    <!-- This file is used by Netlify to detect form fields at build time -->
+    <form name="contact" data-netlify="true" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <select name="service">
+            <option value="full-planning">Full Wedding Planning</option>
+            <option value="partial-planning">Partial Planning</option>
+            <option value="coordination">Month-of Coordination</option>
+            <option value="concierge">Concierge Services</option>
+        </select>
+        <input type="text" name="event-date" />
+        <input type="text" name="budget" />
+        <input type="text" name="occasion" />
+        <input type="text" name="referral" />
+        <textarea name="details"></textarea>
+    </form>
+</body>
+</html>

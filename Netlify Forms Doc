@@ -1,0 +1,862 @@
+---
+title: "Forms setup"
+description: "Use built-in form handling to simplify adding and managing forms for your project. There's no need to make an API call or include extra form handling code."
+---
+
+Netlify's serverless form handling allows you to manage forms without extra API calls or additional JavaScript. Once enabled, the built-in form detection feature allows our build system to automatically parse your HTML at deploy time, so there's no need for you to make an API call or include extra JavaScript on your site.
+
+To get started, enable [automatic form detection](#automatic-form-detection) and then add a `netlify` attribute to your [HTML form](#html-forms).
+
+### Tip - Wondering how Netlify handles form submissions?
+
+Visit our [form submissions](/manage/forms/submissions) doc to learn more about the form submissions UI, API endpoints, and more.
+
+## Automatic form detection
+
+If you would like Netlify to automatically manage your form submissions, you need to enable form detection.
+
+### Enable form detection
+
+To enable form detection for your site:
+
+1. In the Netlify UI, go to 
+### NavigationPath Component:
+
+Forms
+.
+
+2. Select **Enable form detection**.
+
+Starting with your next site deploy, Netlify will automatically scan your deploys for forms that require submission handling.
+
+If you previously used Netlify Forms and disabled automatic form detection, follow the steps to [re-enable form detection](#re-enable-form-detection) and start accepting submissions again.
+
+### Disable form detection
+
+You may want to disable form detection if your site doesn't have forms anymore or if you decide not to use Netlify to manage your forms. Disabling form detection will reduce post processing and may speed up deploys.
+
+To disable form detection for your site:
+
+1. In the Netlify UI, go to 
+### NavigationPath Component:
+
+Forms > Usage and configuration > Form detection
+.
+
+2. Select **Disable form detection**.
+
+3. A confirmation prompt will appear. To continue, enter the name of your site and select **Disable form detection**.
+
+Starting with your next site deploy, Netlify will no longer scan your deploys for forms and will disable [form submission](/manage/forms/submissions#form-submissions-ui) handling for any new or updated forms.
+
+### Caution - Warning
+
+Disabling form detection is intended only for sites that don't use Netlify Forms. If your site does use Netlify Forms, we recommend removing forms from your site code or altering your code to handle submissions by other means before disabling form detection.
+
+### Re-enable form detection
+
+If you previously used Netlify Forms and disabled automatic form detection, follow these steps to re-enable form detection:
+
+1. In the Netlify UI, go to 
+### NavigationPath Component:
+
+Forms > Usage and configuration > Form detection
+.
+
+2. Select **Enable form detection**.
+
+3. Redeploy your site.
+
+Once you redeploy your site, Netlify will automatically scan your deploys for forms and start accepting submissions again.
+
+## HTML forms
+
+Once you [enable form detection](#enable-form-detection), add an HTML form to your site with a `data-netlify="true"` or a `netlify` attribute in the `<form>` tag. Deploy your site with that form included and you can start receiving [submissions](/manage/forms/submissions) in your Netlify site admin panel.
+
+Your form's `name` attribute determines what we call the form in the Netlify UI. If you have more than one form on a site, each form should have a different `name` attribute.
+
+Here's an example of how to use the `data-netlify="true"` attribute or the `netlify` attribute in your form:
+
+### Tabs Component:
+
+<TabItem label="Form with data-netlify attribute">
+```html
+<form name="contact" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: </label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+</TabItem>
+
+<TabItem label="Form with netlify attribute">
+```html
+<form name="contact" method="POST" netlify>
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: </label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+</TabItem>
+
+When Netlify parses the static HTML for a form you've added, the build system automatically strips the `data-netlify="true"` or `netlify` attribute from the `<form>` tag and injects a hidden input named `form-name`. In the resulting HTML that's deployed, the `data-netlify="true"` or `netlify` attribute is gone, and the hidden `form-name` input's `value` matches the `name` attribute of `<form>` like this:
+
+```html
+<input type="hidden" name="form-name" value="contact" />
+```
+
+### Submit HTML forms with AJAX
+
+You don't have to, but you can submit static HTML forms using AJAX.
+
+A static HTML form submitted this way must have `data-netlify=true` or a `netlify` attribute inside its `<form>` tag. For an example of how to set these attributes, review the [HTML forms](#html-forms) section.
+
+Here's an AJAX form submission example using the `fetch` API for a static HTML form:
+
+```js
+const handleSubmit = event => {
+  event.preventDefault();
+
+  const myForm = event.target;
+  const formData = new FormData(myForm);
+
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+    .then(() => console.log("Form successfully submitted"))
+    .catch(error => alert(error));
+};
+
+document.querySelector("form").addEventListener("submit", handleSubmit);
+```
+
+Requirements for the request:
+
+- The body of the request must be URL-encoded. In the above example, the form is passed to a `FormData` constructor. That object is then encoded using the `URLSearchParams` constructor and converted to a string. Note that Netlify Forms does not support JSON form data at this time.
+- If the form accepts alphanumeric data only, the request should include the header `"Content-Type": "application/x-www-form-urlencoded"`. If the form accepts [file uploads](/manage/forms/setup#file-uploads), including a `Content-Type` header is not recommended.
+
+## JavaScript forms
+
+You don't need to include extra JavaScript on your site to use Netlify Forms. But, if you want to, you can use JavaScript to render a form client-side. You can also submit JavaScript-rendered forms over AJAX.
+
+### Forms for Next.js or SSR frameworks
+
+If you're using a pure JavaScript form or SSR (Server Side Rendering), you must include an HTML form that meets this [HTML form criteria](https://answers.netlify.com/t/support-guide-form-problems-form-debugging-404-when-submitting/92#p-141-form-handling-works-automatically-for-html-forms-that-meet-the-following-requirements-2), including all the input tags with the same names as the JavaScript form.
+
+For instructions and examples specific to Next.js 13.5 and above, visit [breaking changes for the Next.js runtime](/build/frameworks/framework-setup-guides/nextjs/overview#v5-breaking-changes).
+
+### Work with JavaScript-rendered forms
+
+The Netlify build system finds your forms by parsing the HTML of your site when the build completes. This means that if you're using JavaScript to render a form client-side, our build system won't find it in the pre-built files. You can work around this:
+
+- Create a hidden HTML form with the `data-netlify="true"` attribute or a `netlify` attribute and input fields with `name` attributes to match the inputs of your JavaScript-rendered form. You need to apply the same work around if you want to use our [reCAPTCHA 2 integration](/manage/forms/spam-filters#recaptcha-2-challenge), and create a `div` element in the hidden HTML with the `data-netlify-recaptcha="true"` attribute.
+- Add a hidden input to the JavaScript-rendered form or JSX form:
+
+  ```jsx
+  <input type="hidden" name="form-name" value="name_of_my_form" />
+  ```
+
+You can also find related tutorials on our blog:
+
+- [How to Integrate Netlify's Form Handling in a React App](https://www.netlify.com/blog/2017/07/19/how-to-integrate-netlifys-form-handling-in-a-react-app/)
+- [How to Integrate Netlify forms in a Vue App](https://www.netlify.com/blog/2018/09/07/how-to-integrate-netlify-forms-in-a-vue-app/)
+
+While the two articles are fairly framework-specific, the code demonstrates how to prerender forms when working with them in a web application.
+
+### Submit JavaScript-rendered forms with AJAX
+
+To submit a JavaScript-rendered form built with a framework like Gatsby or Nuxt, you can send an AJAX POST request to any path on your site. Requirements for the request:
+
+- You need to URL-encode your form data in the body of the request.
+- If you haven't added a hidden `form-name` input to your JavaScript-rendered form, you need to send a `form-name` attribute in the AJAX POST request body.
+- If the form accepts alphanumeric data only, the request should include the header `"Content-Type": "application/x-www-form-urlencoded"`. If the form accepts [file uploads](/manage/forms/setup#file-uploads), including a `Content-Type` header is not recommended.
+
+Here's an AJAX form submission code sample using the `fetch` API for a JavaScript-rendered form. It uses Gatsby's `navigate` function to redirect to a custom page on form submission success.
+
+```js
+const handleSubmit = event => {
+  event.preventDefault();
+
+  const myForm = event.target;
+  const formData = new FormData(myForm);
+
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+    .then(() => navigate("/thank-you/"))
+    .catch(error => alert(error));
+};
+```
+
+For a JavaScript-rendered form, you need to add a hidden `input` with `name="form-name"` to the returned form elements. Here's an example:
+
+```jsx
+return (
+  <form
+    data-netlify="true"
+    name="pizzaOrder"
+    method="post"
+    onSubmit={handleSubmit}
+  >
+    <input type="hidden" name="form-name" value="pizzaOrder" />
+    <label>
+      What order did the pizza give to the pineapple?
+      <input name="order" type="text" onChange={handleChange} />
+    </label>
+    <input type="submit" />
+  </form>
+);
+```
+
+In the code sample above, a `handleChange` function updates the form's state, which ultimately gets sent in a POST request to Netlify.
+
+## Success messages
+
+By default, when visitors complete a form, they are redirected to a page with a generically styled success message with a link back to the form page.
+
+![Generic forms success message displayed.](/images/forms-default-generic-success-message.png)
+
+### Custom success page
+
+You can replace the default success page with a custom page you create by adding an `action` attribute to the `<form>` tag, entering the path of your custom page (like `"/pages/success"`) as the value. The path must be relative to the site root, starting with a `/`. Here's an example:
+
+```html
+
+```
+
+If you submit your form using AJAX, reference this [Gatsby-specific example](#submit-javascript-rendered-forms-with-ajax) of how to set a custom success page.
+
+### Custom success alert
+
+If you use AJAX to submit the form, you can substitute an alert instead of redirecting to a generic or custom page. Here's an example for an HTML form:
+
+```js
+const handleSubmit = event => {
+  event.preventDefault();
+
+  const myForm = event.target;
+  const formData = new FormData(myForm);
+
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString()
+  })
+    .then(() => alert("Thank you for your submission"))
+    .catch(error => alert(error));
+};
+
+document.querySelector("form").addEventListener("submit", handleSubmit);
+```
+
+## File uploads
+
+<p>
+<noscript>
+For information about interacting with uploaded files, visit the <a href="/manage/forms/submissions/">submissions page</a>.
+</noscript>
+</p>
+
+Netlify Forms can receive files uploaded with form submissions. To do this, add an input with `type="file"` to any form. Although most browsers will detect the encoding automatically, you can optionally include `enctype="multipart/form-data"` in the `<form>` tag,
+
+Here's a sample HTML form with a file upload field:
+
+```html
+<form name="fileForm" enctype="multipart/form-data" data-netlify="true">
+  <p>
+    <label>
+      <span>Name:</span>
+      <input name="name" type="text" />
+    </label>
+  </p>
+  <p>
+    <label>
+      <span>Add file:</span>
+      <input name="file" type="file" />
+    </label>
+  </p>
+  <button>Submit</button>
+</form>
+
+```
+
+### File upload security
+
+Forms that accept file uploads that contain personally identifiable information (PII) require additional security configuration. We recommend using the [Very Good Security](https://www.netlify.com/integrations/very-good-security/) integration for this type of secure form upload.
+
+### Limitations
+
+Keep the following considerations in mind when working with file uploads in forms.
+
+- Only one file upload per field is supported. For multiple file uploads, use multiple fields.
+- The form request has a maximum size limit of 8 MB.
+- File uploads time out after 30 seconds.
+
+### Submit file uploads with AJAX
+
+When submitting a form with a file upload, including a `Content-Type` header is not recommended. The browser should detect and set the `Content-Type` automatically.
+
+Here's an AJAX form submission code sample using the `fetch` API for the above HTML form with file upload:
+
+```js
+document.forms.fileForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const result = document.querySelector(".result");
+  fetch("/", {
+    body: new FormData(event.target),
+    method: "POST"
+  })
+    .then(() => {
+      result.innerText = "Success";
+    })
+    .catch(error => {
+      result.innerText = `Failed: ${error}`;
+    });
+});
+```
+
+## Set up notifications
+
+To monitor the content of your form submissions, you can set up notifications to send the content of the form submissions to an email address or to an external service with an HTTP POST request.
+
+Learn more about [forms notifications](/manage/forms/notifications).
+
+To set up notifications for your site's form submissions:
+
+1. For your site go to 
+### NavigationPath Component:
+
+Configuration > Notifications > Form submission notifications
+, and select **Add notification**.
+
+## Review forms usage
+
+For the last month (or billing period), you can review how many verified form submissions were made and the total storage size of all files uploaded.
+
+1. For your site, go to 
+### NavigationPath Component:
+
+Forms > Usage and configuration > Usage
+.
+
+Learn more about [reviewing and managing forms usage](/manage/forms/usage-and-billing).
+
+## More Forms resources
+
+- [Spam filters](/manage/forms/spam-filters)
+- [Form submissions](/manage/forms/submissions)
+- [Form submission notifications](/manage/forms/notifications)
+- [Form-triggered functions](/build/functions/trigger-on-events)
+- [Troubleshooting tips](/manage/forms/troubleshooting-tips)
+- [Forms usage and billing](/manage/forms/usage-and-billing)
+
+
+
+
+
+
+
+
+---
+title: "Form submissions"
+description: "Manage form submissions in our UI or through our API. Learn how to delete a form and its submissions if needed."
+---
+
+This document covers features you can use to manage your form submissions and recommendations for sensitive data. To learn how you can be made aware of new form submissions, visit our [form notifications](/manage/forms/notifications) page.
+
+## Form submissions UI
+
+You can find all submissions to your Netlify forms in your site's 
+### NavigationPath Component:
+
+Forms
+ tab. Select a form name from the **Active forms** list to access the submissions for that form. By default, only verified submissions are listed. You can switch to [spam submissions](/manage/forms/spam-filters) using a menu above the list.
+
+### Note - Note
+
+If you've [disabled form detection](/manage/forms/setup#disable-form-detection), Netlify will not process any new or changed forms in your HTML files during deploys. You can still access form submissions for any preexisting and unchanged forms, but any newly deployed or updated forms won't support new submissions while form detection is disabled.
+
+### Submission summary display
+
+Each form submission in the list displays a summary to help you identify it. The summary is generated based on your form's HTML structure in the following priority order:
+
+1. **Title and body combination**: If your form has a title and/or body field, these are combined in the summary.
+2. **First field with data**: If no title or body field exists, the summary displays the value from the first field that contains data. For file upload fields, the filename is shown.
+
+The title and body are identified by **field type**, not field name:
+
+- **Title**: The first text `<input>` element that is not hidden and not an email-related field. Email-related fields are those with `type="email"` or names matching `email`, `mail`, `from`, `twitter`, or `sender` (case-insensitive). If no matching input is found, Netlify falls back to looking for a field named exactly `title` or `subject` (case-insensitive).
+- **Body**: The first `<textarea>` element in the form, regardless of its name.
+
+This means the order of fields in your HTML affects which values appear in the summary.
+
+### Export form submissions to CSV
+
+You can export verified form submissions to a CSV file. From the **Forms** tab, select the form you want to export, then select **Download as CSV** near the top of the form detail page.
+
+### Change a form submission's state
+
+You can change the state of a submission from spam to verified or vice versa. To do so, check the box next to each submission title to select one or multiple submissions and then use the **Mark as spam** or **Mark as verified** button. 
+
+### Delete a form submission
+
+You can delete both verified submissions and spam submissions. To do so, check the box next to each submission title to select one or multiple submissions. After you select the submissions, a red **Delete submission** button will become available. When you select **Delete submission**, you'll be prompted to confirm the deleting action. Once you confirm, your selected submissions will be deleted permanently.
+
+### Delete a form
+
+You can delete a form and all of its submissions by selecting **Delete form**. You'll be prompted to confirm the deleting action. Once you confirm, future submissions to the form will result in a `404` error and previous submissions will no longer be available. You may want to [export form submissions to CSV](/manage/forms/submissions#export-form-submissions-to-csv) before you delete your form. 
+
+## API endpoints
+
+You can use the [API](/api-and-cli-guides/api-guides/get-started-with-api#forms) to get verified/spam submissions, delete submissions, delete forms, and more.
+
+## File uploads
+
+When a form is submitted with one or more [file uploads](/manage/forms/setup#file-uploads), a link to each uploaded file will be included in the form submission details. These are accessible in the Netlify app, in email notifications, in CSV exports, and from our API.
+
+After you delete a form, the file uploads are still available by their direct URL for 24 hours because of the way caching works for forms by default.
+
+## Manage sensitive form data
+
+Form submission data is securely stored in our user database. If your form collects personally identifiable information (PII), we recommend that you actively manage the data by exporting form submissions and deleting them regularly.
+
+Forms that include file uploads with personally identifiable information should use the [Very Good Security](https://www.netlify.com/integrations/very-good-security/) integration to protect this data.
+
+## Automatic sanitization
+
+Our form handling automatically sanitizes form submissions to keep your site and business secure. Any code that gets submitted through Netlify Forms, such as `<script>` tags or anything else that could be harmful, is neutralized.
+
+Take for example the following code:
+
+```html
+<script>alert('Surprise!');</script>
+```
+
+If someone tries to submit this through your form, we transform the code into the following to make it harmless:
+
+```
+&lt;script&gt;alert('Surprise!')&lt;/script&gt;
+```
+
+## Form-triggered functions
+
+You can integrate your forms with Netlify Functions by triggering a serverless function when a form submission is verified. Find out more in the [Functions](/build/functions/trigger-on-events) docs.
+
+
+
+
+
+
+---
+title: "Form notifications"
+description: "Set up notifications for form submissions using email, webhooks, or Slack. Use a third-party integration to trigger an action upon form submission."
+---
+
+Stay updated on the latest form submissions and trigger your own custom workflows with form notifications. Send form notifications to email, webhooks, or a Slack workspace. 
+
+Set up notifications for verified submissions to a specific form or for all verified submissions to any form on your site. 
+
+To send form notifications to email or webhooks: 
+- Go to  
+### NavigationPath Component:
+
+Project configuration > Notifications > Emails and webhooks > Form submission notifications
+. 
+
+To send form notifications to a Slack workspace: 
+- Check out our docs on setting up the [Netlify App for Slack](/extend/install-and-use/setup-guides/netlify-app-for-slack).
+
+## Slack notifications 
+
+Surface form submissions in Slack with just a few clicks. Learn more in the [Netlify App for Slack docs](/extend/install-and-use/setup-guides/netlify-app-for-slack).
+
+## Email notifications
+
+By default, form notification emails are sent from formresponses@netlify.com, and any replies to a notification go to that address. To respond to a form submitter, you need to enter their address manually.
+
+We recommend that you add an `<input>` with `name="email"` to your form. This sets the `Reply-to` value on the form notification email, allowing you to reply directly to the form submitter without manually entering their email.
+
+### Customize the email subject line
+
+You can completely customize the email subject line in the email notifications that Netlify sends when someone submits a form from your site.
+
+If you don't customize the email subject line in the Netlify UI or in your Netlify HTML form, then your form will automatically apply a default email subject line.
+
+You can customize the email subject line from the Netlify UI or in the HTML markup for your form. 
+
+We recommend that you choose one way to customize your email subject line since whatever you set in the HTML form overrides the settings in the Netlify UI. 
+
+As an overview of these options, consider the following:
+  - To reference anything programmatically in the email subject line and keep the subject line version controlled, set the email subject line in your HTML form. Check out [the example HTML forms](/manage/forms/notifications#example-html-forms).
+  - To manage your form's email subject line in the Netlify UI, set the email subject line at 
+### NavigationPath Component:
+
+Project configuration > Notifications > Emails and webhooks > Form submission notifications
+. To change the email subject line, additionally select **Options > Edit notifications**. You many need to remove any email subject line specified in your forms' HTML to keep the email subject line you specify in the Netlify UI.
+
+You can also apply predefined variables to your email subject line, such as `%{formName}` , `%{siteName}`, or `%{submissionId}`. 
+
+For example, your email subject line can be `New lead from %{formName} (%{submissionId})`. Use these variables in the HTML form or in the Netlify UI.
+
+### Example HTML forms
+
+This example sets the email subject line for your form notification to `Sales inquiry from mysitename.netlify.app`:
+
+```html
+<form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="subject" 
+  value="Sales inquiry from mysitename.netlify.app" />
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Message: </label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+
+The `Reply-to` email is whatever value the form submitter entered in the `Your Email:` field.
+
+This example uses [predefined variables](/manage/forms/notifications#customize-the-email-subject-line) to dynamically set your email subject line to `New lead from %{formName} (%{submissionId})`:
+
+```html
+<form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="subject" 
+  value="New lead from %{formName} (%{submissionId})" />
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Message: </label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+
+### Note - Older form or want to remove [Netlify] from subject line?
+
+The example above assumes your form was created after May 5, 2023. Forms created before this date will have an automated `[Netlify]` prefix in your email subject line. 
+
+To remove `[Netlify]` from the subject line of your form submission email notification, check out our [`[Netlify]` prefix removal docs](/manage/forms/notifications/#remove-netlify-prefix-from-your-email-subject-line).
+
+For greater control of form-triggered emails, or to connect other services, you can use the Netlify app on [Zapier](#zapier-integrations) or [n8n](#n8n-integrations).
+
+### Remove `[Netlify]` prefix from your email subject line
+
+Forms created before May 5, 2023 included `[Netlify]` as a default and automated prefix in the email subject line. 
+
+Now you can remove the `[Netlify]` prefix from your email subject line and completely customize your email subject line. 
+
+To remove `[Netlify]` from the email subject line of your form submission notification email:
+- If you have an email subject line specified in your HTML form, decide whether to [modify your existing email subject line in the HTML form](/manage/forms/notifications#remove-netlify-prefix-in-the-html-form) or opt to [use the Netlify UI](/manage/forms/notifications#customize-the-email-subject-line) instead.
+- If you do not have an email subject line specified in your HTML form, you can just [edit the form notification settings in the Netlify UI](/manage/forms/notifications#customize-the-email-subject-line). All new forms will not include `[Netlify]`.
+
+#### Remove `[Netlify]` prefix in the HTML form
+
+To remove the `[Netlify]` prefix from your subject line and keep using the HTML form to specify the subject line, add the `data-remove-prefix` attribute to your HTML form's email subject input field:
+
+```html
+<form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="subject" data-remove-prefix
+  value="Sales inquiry from mysitename.netlify.app" />
+  <!-- Add other form fields here -->
+</form>
+```
+
+In this example, your email subject line is `Sales inquiry from mysitename.netlify.app`. This removes `[Netlify]` from your new form notification emails. Learn more about this update in this [support Forums post](https://answers.netlify.com/t/customize-the-email-subject-line-for-form-submission-notifications/91534).
+
+Note that if you have an HTML form with a different email subject specified, that subject will take precedence over any updates you make to the email subject line in the Netlify UI.
+
+## Zapier integrations
+
+Netlify is available on Zapier, where you can connect Netlify with over 1,000 other applications. You can set up a "Zap" action to be triggered when there is a verified form submission on your website. You can [find out more on our blog](https://www.netlify.com/blog/2018/11/07/automate-your-netlify-sites-with-zapier/), or use one of the templates below to get started:
+
+### Integration: zapier-forms
+
+- **ID**: zapier-forms
+- **Description**: Start a deploy of your Netlify site after new Netlify form submissions
+- **Subtext**: Netlify
+- **Link**: https://zapier.com/webintent/create-zap?template
+- **CTA Text**: Use this zap
+
+### Integration: zapier-forms
+
+- **ID**: zapier-forms
+- **Description**: Send Gmail emails for new Netlify form submissions
+- **Subtext**: Gmail + Netlify
+- **Link**: https://zapier.com/webintent/create-zap?template
+- **CTA Text**: Use this zap
+
+### Integration: zapier-forms
+
+- **ID**: zapier-forms
+- **Description**: Save new Netlify form submissions to rows in Google Sheets
+- **Subtext**: Google Sheets + Netlify
+- **Link**: https://zapier.com/webintent/create-zap?template
+- **CTA Text**: Use this zap
+
+### Integration: zapier-forms
+
+- **ID**: zapier-forms
+- **Description**: Create Salesforce leads from new Netlify form submissions
+- **Subtext**: Netlify + Salesforce
+- **Link**: https://zapier.com/webintent/create-zap?template
+- **CTA Text**: Use this zap
+
+### Integration: zapier-forms
+
+- **ID**: zapier-forms
+- **Description**: Create Mailchimp subscribers from new Netlify form submissions
+- **Subtext**: Mailchimp + Netlify
+- **Link**: https://zapier.com/webintent/create-zap?template
+- **CTA Text**: Use this zap
+
+### Integration: zapier-forms
+
+- **ID**: zapier-forms
+- **Description**: Create Zendesk tickets for new Netlify form submissions
+- **Subtext**: Netlify + Zendesk
+- **Link**: https://zapier.com/webintent/create-zap?template
+- **CTA Text**: Use this zap
+
+## n8n integrations
+Netlify is available on <a href="https://n8n.io/" target="_blank">n8n</a>, an open source tool that allows you to connect Netlify with other applications. By using one of n8n's Netlify nodes, you can create your own automated workflow. To get started, you can use the [Netlify node](https://n8n.io/integrations/netlify/), [Netlify Trigger node](https://n8n.io/integrations/netlify-trigger/), or you can use the existing workflow below:
+
+### Integration: n8n-forms
+
+- **ID**: n8n-forms
+- **Description**: Add Netlify Form submissions to Airtable
+- **Subtext**: Netlify Trigger node
+- **Link**: https://n8n.io/workflows/1253-add-netlify-form-submissions-to-airtable/
+- **CTA Text**: Use workflow
+
+
+---
+title: "Spam filters"
+description: "Rely on built-in spam protection for forms, or set up extra spam protection using a honeypot field or reCAPTCHA."
+---
+
+All form submissions are filtered for spam [using Akismet](https://www.netlify.com/blog/2019/02/12/improved-netlify-forms-spam-filtering-using-akismet/), an industry leader in spam detection. Only submissions that pass the filter are included in your form's **Verified submissions** list in the [form submissions UI](/manage/forms/submissions#form-submissions-ui). Submissions flagged as spam by Akismet can be found by switching to your form's **Spam submissions** list.
+
+### Tip - Tip
+
+You can [change the state of a submission](/manage/forms/submissions#change-a-form-submission-s-state) from spam to verified or vice versa.
+
+## Extra spam prevention
+For additional protection to help prevent abuse of your forms, you can add a [honeypot field](/manage/forms/spam-filters#honeypot-field), a [reCAPTCHA 2](/manage/forms/spam-filters#recaptcha-2-challenge), or both. We automatically reject submissions that do not pass these challenges. Junk submissions caught by a honeypot field or reCAPTCHA 2 won't even be included in your form's spam submissions. The **Submissions** page for a form will indicate if it has any extra spam prevention enabled.
+
+### Honeypot field
+
+"Honeypot" fields are hidden form fields that lure bot users into completing a field that human users can't detect. A form submitted with a completed honeypot field can be safely rejected because only a bot would detect and complete the field. You can alert Netlify to a hidden honeypot field by adding a `netlify-honeypot` attribute to your `<form>` with the name of your hidden field. Then make sure that field is present in the form, but hidden via CSS or JavaScript.
+
+Here's an example:
+
+```html
+<form
+  name="contact"
+  method="POST"
+  netlify-honeypot="bot-field"
+  data-netlify="true"
+>
+  <p class="hidden">
+    <label>
+      Don't fill this out if you're human: <input name="bot-field" type="text" />
+    </label>
+  </p>
+  <p>
+    <label>
+      Email: <input type="text" name="email" />
+    </label>
+  </p>
+  <p>
+    <label>
+      Message: 
+    </label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+
+When Netlify parses the static HTML during post-processing, the build system automatically strips the `netlify-honeypot` attribute from the `<form>` tag, leaving the honeypot input field in place. In the example above, if a spambot enters any value in `bot-field`, Netlify will quietly reject the form submission.
+
+If you [submit your form with AJAX](/manage/forms/setup#submit-javascript-rendered-forms-with-ajax), make sure that the honeypot field name is included in the body of the POST request. This happens automatically if you use `FormData()` to encode the body of the request.
+
+### reCAPTCHA 2 challenge
+
+If you would like to add a [reCAPTCHA 2 challenge](https://developers.google.com/recaptcha/) to a form, Netlify can include one for you, or you can [add your own](/manage/forms/spam-filters#custom-recaptcha-2).
+
+#### Netlify-provided reCAPTCHA 2
+
+To have Netlify provide the CAPTCHA:
+
+1. Add a `data-netlify-recaptcha="true"` attribute to your `<form>` tag.
+2. In the place where you'd like the CAPTCHA to appear, add an empty `<div>` element inside your form with the same `data-netlify-recaptcha="true"` attribute.
+
+When your site is published, the form will include the necessary HTML to render the CAPTCHA.
+
+Here's an example:
+
+```html
+<form
+  name="contact"
+  method="POST"
+  data-netlify-recaptcha="true"
+  data-netlify="true"
+>
+  <p>
+    <label>
+      Email: <input type="text" name="name" />
+    </label>
+  </p>
+  <p>
+    <label>
+      Message: 
+    </label>
+  </p>
+  
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+```
+
+When a visitor submits the form, our servers will validate the CAPTCHA server-side. If the validation fails, we'll redirect the visitor back to the same page and reject the form submission.
+
+You can include one Netlify-provided reCAPTCHA 2 challenge per page. To use multiple challenges on one page, add [custom reCAPTCHA 2](#custom-recaptcha-2).
+
+#### Custom reCAPTCHA 2
+
+You can also add your own reCAPTCHA 2 code in your site and let Netlify validate that form submissions come from a human. This is useful if you want to have more control over your validations, if you use a JavaScript library to inject a CAPTCHA in your forms, or if you need more than one CAPTCHA on a page.
+
+In this case, Netlify needs your reCAPTCHA 2 site key and secret for validating that the captcha response is correct. You can provide these values with [environment variables](/build/environment-variables/overview) in your site configuration. Use `SITE_RECAPTCHA_KEY` to set your site key, and use `SITE_RECAPTCHA_SECRET` to set the secret provided by reCAPTCHA 2.
+
+To set up a custom reCAPTCHA:
+
+1. [Sign up for a reCAPTCHA API key pair](http://www.google.com/recaptcha/admin) and follow the instructions for adding reCAPTCHA to your site. This typically involves adding a script before the closing `</head>` of your HTML template, and a snippet at the end of the `<form>` where you want the reCAPTCHA widget to appear.
+2. Create the following environment variables for your site [using the Netlify UI, CLI, or API](/build/environment-variables/get-started/#create-variables-with-the-netlify-ui-cli-or-api):
+   * A variable with the key name of `SITE_RECAPTCHA_KEY` and a value set to your reCAPTCHA API site key. If you have the option to set specific [scopes](/build/environment-variables/overview#scopes) for your environment variables, the scope must include both **Builds** and **Runtime**.
+   * A variable with the key name of `SITE_RECAPTCHA_SECRET` and a value set to your reCAPTCHA API secret key. If you have the option to set specific [scopes](/build/environment-variables/overview#scopes) for your environment variables, the scope must include **Runtime**.
+3. Add a `data-netlify-recaptcha="true"` attribute to the HTML form that has the custom reCAPTCHA widget.
+
+   ```html
+   <form 
+     name="contact" 
+     method="POST" 
+     data-netlify-recaptcha="true" 
+     data-netlify="true"
+   >
+     <!-- input fields and custom reCAPTCHA snippet -->
+   </form>
+   ```
+
+The Netlify servers will check the submissions from that form, and accept them only if they include a valid `g-recaptcha-response` value.
+
+If you [submit your form with AJAX](/manage/forms/setup#submit-javascript-rendered-forms-with-ajax), make sure the `g-recaptcha-response` field is included in the body of the POST request.  This happens automatically if you use `FormData()` to encode the body of the request.
+
+
+
+
+---
+title: "Form troubleshooting tips"
+description: "Refer to troubleshooting tips for setting up a form on our platform if things aren't working as expected."
+---
+
+This document provides troubleshooting tips for setting up a form. If you have questions that aren't answered here, visit our Support Forums to get more advice about [how to debug your form](https://answers.netlify.com/t/common-issue-how-to-debug-your-form/92).
+
+## Custom success page
+
+If you're having trouble using the form `action` to customize the [success page](/manage/forms/setup#success-messages), try linking to your custom success page from somewhere on the same page as the form. Use the same exact path in your test link as you're trying to use for the `action` attribute, and make sure the link works there before digging further into your form.
+
+## Extra spam prevention
+
+If you're adding a [honeypot field](/manage/forms/spam-filters#honeypot-field) or [reCAPTCHA 2 challenge](/manage/forms/spam-filters#recaptcha-2-challenge), you can check the form detail page to confirm whether or not the **Extra spam prevention** has been successfully enabled.
+
+## Missing submissions
+
+Here are some common causes and solutions for missing form submissions.
+
+### Test submissions flagged as spam
+
+If you're sending test [submissions of your form](/manage/forms/submissions) and not finding them in your **Verified submissions** list, it's possible they're getting [flagged as spam by Akismet](/manage/forms/spam-filters). Use the menu above the list to switch to **Spam submissions** and then recheck for your tests.
+
+To avoid having your tests flagged as spam in the first place, we recommend you
+
+- enter a real email address instead of a fake one such as test@test.com.
+- write some full sentences in any textareas rather than a few nonsense characters.
+- spread out the rate of submissions from a single IP address.
+
+### Form detection disabled
+
+If you're not finding new form submissions in your **Verified submissions** list for updated or newly added forms, ensure that [form detection](/manage/forms/setup#automatic-form-detection) is enabled for your site.
+
+If this is your first time enabling form detection, go to 
+### NavigationPath Component:
+
+Forms
+ to turn on the setting. If you previously enabled form detection, go to 
+### NavigationPath Component:
+
+Forms > Usage and configuration > Form detection
+ to review the setting.
+
+Once you [enable](/manage/forms/setup#enable-form-detection) or [re-enable form detection](/manage/forms/setup#re-enable-form-detection), make sure you redeploy your site. Once you redeploy, Netlify will automatically scan your deploys for forms and will accept form submissions.
+
+## Missing data from old submissions
+
+If you recently changed the name or type of a form field, data for that field from old submissions will no longer appear in the Netlify UI. This is because the Netlify UI only shows the form fields and data that correspond to the last deployed version of your form.
+
+Fortunately, all of your previous submission data are still available through the Netlify API. You can request form data with the [listFormSubmissions endpoint](https://open-api.netlify.com/#tag/submission/operation/listFormSubmissions).
+
+If you would like to review the data from both the old and current form fields in the Netlify UI, we recommend that you mark old form fields as "hidden" instead of removing or replacing them entirely.
+
+## Next.js Runtime v5 support
+
+If you're using Netlify Forms with Next.js Runtime v5, you need to extract your form definitions to a dedicated static HTML file and make sure that the form submission uses AJAX rather than full-page navigation. Refer to [the Next.js v5 breaking changes](/build/frameworks/framework-setup-guides/nextjs/overview#v5-breaking-changes) for more information.
+
