@@ -5,15 +5,12 @@ import { VisualEditsMessenger } from "orchids-visual-edits";
 const siteUrl = "https://uniquecaboweddings.com";
 const siteName = "Unique Cabo Weddings";
 const siteDescription = "Plan your dream Cabo destination wedding with 20+ years of local expertise. Unique Cabo Weddings by Luba offers personalized planning for discerning couples seeking hidden gems, 350 days of sun, and stress-free celebrations in Los Cabos. From intimate villas to oceanfront venues—your vision, expertly executed.";
-const ogImage = "/ucw-preview.png";
+const ogImage = "https://uniquecaboweddings.com/ucw-preview.png";
 const faviconUrl = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/WNtvMo5tp5fgOGST3T3zn7s0R1c-1.png";
 
 export const metadata: Metadata = {
-  // Core Meta Tags
-  title: {
-    default: "Unique Cabo Weddings | Premier Destination Wedding Planner in Los Cabos",
-    template: "%s | Unique Cabo Weddings",
-  },
+  // Core Meta Tags - Simple title for browser tab
+  title: "Unique Cabo Weddings",
   description: siteDescription,
   keywords: [
     "Cabo destination wedding planner",
@@ -32,13 +29,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Unique Cabo Weddings", url: siteUrl }],
   creator: "Unique Cabo Weddings",
   publisher: "Unique Cabo Weddings",
-  
-  // Favicon and Icons
-  icons: {
-    icon: faviconUrl,
-    shortcut: faviconUrl,
-    apple: faviconUrl,
-  },
   
   // Open Graph (Facebook, Instagram, LinkedIn)
   openGraph: {
@@ -79,12 +69,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  
-  // Verification (add your verification codes when available)
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  // },
   
   // Alternate languages (if applicable)
   alternates: {
@@ -203,6 +187,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Favicon - UCW Blue Clover Logo */}
+        <link rel="icon" href={faviconUrl} type="image/png" />
+        <link rel="shortcut icon" href={faviconUrl} type="image/png" />
+        <link rel="apple-touch-icon" href={faviconUrl} />
+        
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
