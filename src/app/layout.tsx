@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { VisualEditsMessenger } from "orchids-visual-edits";
 
-const siteUrl = "https://uniquecaboweddings.com";
+const siteUrl = "https://caboweddingplanner.love";
 const siteName = "Unique Cabo Weddings";
 const siteDescription = "Plan your dream Cabo destination wedding with 20+ years of local expertise. Unique Cabo Weddings by Luba offers personalized planning for discerning couples seeking hidden gems, 350 days of sun, and stress-free celebrations in Los Cabos. From intimate villas to oceanfront venues—your vision, expertly executed.";
-const ogImage = "https://uniquecaboweddings.com/ucw-preview.png";
+const ogImage = "https://caboweddingplanner.love/ucw-preview.png";
 const faviconUrl = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/0ab945c7-bca8-4554-858a-cf78d860c3b0-ucw-framer-ai/assets/images/WNtvMo5tp5fgOGST3T3zn7s0R1c-1.png";
 
 export const metadata: Metadata = {
@@ -13,15 +14,19 @@ export const metadata: Metadata = {
   title: "Unique Cabo Weddings",
   description: siteDescription,
   keywords: [
-    "Cabo destination wedding planner",
-    "Los Cabos wedding coordinator",
-    "Cabo San Lucas wedding planning",
-    "Mexico destination wedding expert",
     "Cabo wedding planner",
+    "Cabo San Lucas wedding planner",
+    "Los Cabos wedding planner",
+    "Cabo destination wedding",
     "destination wedding Mexico",
+    "Mexico destination wedding planner",
     "luxury Cabo wedding",
-    "beach wedding Cabo",
     "Cabo wedding packages",
+    "Cabo wedding cost",
+    "Cabo vs Cancun wedding",
+    "Flora Farms wedding",
+    "Sunset Monalisa wedding",
+    "beach wedding Cabo",
     "destination wedding planning",
     "Luba Cabo planner",
     "Unique Cabo Weddings",
@@ -187,11 +192,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Tag Manager */}
+        <Script id="gtm-head" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-MPFNR7JV');`}
+        </Script>
+
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="vdy3-T5PZLrGW6cxxYOJADMljTpOJVY_IausX-HKMvY" />
+
         {/* Favicon - UCW Blue Clover Logo */}
         <link rel="icon" href={faviconUrl} type="image/png" />
         <link rel="shortcut icon" href={faviconUrl} type="image/png" />
         <link rel="apple-touch-icon" href={faviconUrl} />
-        
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -199,6 +216,16 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-sans">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MPFNR7JV"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         {children}
         <VisualEditsMessenger />
       </body>

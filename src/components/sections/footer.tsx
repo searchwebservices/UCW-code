@@ -87,7 +87,7 @@ const Footer = () => {
           <div className="flex flex-col py-16 pl-12">
             <div className="mb-12">
               <p className="text-[14px] text-[#4D4D4D] mb-8">
-                Delivering Perfection since 2010
+                Delivering Perfection Since 2005
               </p>
               
               <div className="space-y-10">
@@ -159,15 +159,6 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* Framer Badge Placeholder */}
-      <div className="mt-8 flex justify-end px-8">
-        <div className="bg-white px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-sm border border-[#CAC6C0]">
-          <div className="w-4 h-4 rounded-sm bg-black flex items-center justify-center">
-            <div className="w-2 h-2 border-r border-b border-white -rotate-45"></div>
-          </div>
-          <span className="text-[12px] font-semibold text-black">Made in Framer</span>
-        </div>
-      </div>
     </footer>
   );
 };
