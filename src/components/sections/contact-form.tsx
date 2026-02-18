@@ -25,6 +25,20 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
+        // Push form submission event to GTM dataLayer
+        if (typeof window !== 'undefined') {
+          (window as Record<string, unknown[]>).dataLayer = (window as Record<string, unknown[]>).dataLayer || [];
+          (window as Record<string, unknown[]>).dataLayer.push({
+            'event': 'form_submission',
+            'form_name': 'contact_form',
+            'form_location': window.location.pathname,
+            'lead_type': 'contact_inquiry',
+            'conversion_value': 100,
+            'budget_range': formData.get('budget') || '',
+            'service_type': formData.get('service') || '',
+            'referral_source': formData.get('referral') || '',
+          });
+        }
         router.push("/contact/success");
       } else {
         console.error("Form submission failed with status:", response.status);
@@ -215,7 +229,23 @@ export default function ContactForm() {
             <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-border">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground/60 block mb-2">Call Us</span>
-                <p className="text-lg font-sans">+52 (624) 122 0146</p>
+                <a
+                  href="tel:+526241220146"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      (window as Record<string, unknown[]>).dataLayer = (window as Record<string, unknown[]>).dataLayer || [];
+                      (window as Record<string, unknown[]>).dataLayer.push({
+                        'event': 'click_to_call',
+                        'phone_number': '+526241220146',
+                        'click_location': window.location.pathname,
+                        'conversion_value': 150,
+                      });
+                    }
+                  }}
+                  className="text-lg font-sans hover:text-accent transition-colors"
+                >
+                  +52 (624) 122 0146
+                </a>
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground/60 block mb-2">Visit Us</span>
@@ -223,7 +253,23 @@ export default function ContactForm() {
               </div>
               <div className="md:col-span-2">
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground/60 block mb-2">Reach out directly at</span>
-                <p className="text-lg font-sans">luba@uniquecaboweddings.com</p>
+                <a
+                  href="mailto:luba@uniquecaboweddings.com"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      (window as Record<string, unknown[]>).dataLayer = (window as Record<string, unknown[]>).dataLayer || [];
+                      (window as Record<string, unknown[]>).dataLayer.push({
+                        'event': 'click_to_email',
+                        'email_address': 'luba@uniquecaboweddings.com',
+                        'click_location': window.location.pathname,
+                        'conversion_value': 75,
+                      });
+                    }
+                  }}
+                  className="text-lg font-sans hover:text-accent transition-colors"
+                >
+                  luba@uniquecaboweddings.com
+                </a>
               </div>
             </div>
           </div>

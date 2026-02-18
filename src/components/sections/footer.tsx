@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Instagram, MessageSquare, Clock, Phone, Mail, MapPin, ChevronUp } from 'lucide-react';
+import { TrackedPhoneLink, TrackedEmailLink } from '@/components/tracked-links';
 
 const Footer = () => {
     const menuItems = [
@@ -104,16 +105,16 @@ const Footer = () => {
 
                 <div className="flex items-center gap-3">
                   <Phone size={16} className="text-black" />
-                  <a href="tel:+526241220146" className="text-[13px] font-medium text-black hover:text-[#087B97] transition-colors">
+                  <TrackedPhoneLink className="text-[13px] font-medium text-black hover:text-[#087B97] transition-colors">
                     +52 (624) 122 0146
-                  </a>
+                  </TrackedPhoneLink>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <Mail size={16} className="text-black" />
-                  <a href="mailto:luba@uniquecaboweddings.com" className="text-[13px] font-medium text-black hover:text-[#087B97] transition-colors">
+                  <TrackedEmailLink className="text-[13px] font-medium text-black hover:text-[#087B97] transition-colors">
                     luba@uniquecaboweddings.com
-                  </a>
+                  </TrackedEmailLink>
                 </div>
 
                 <div className="flex flex-col items-start gap-2">
