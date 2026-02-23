@@ -201,6 +201,15 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-MPFNR7JV');`}
         </Script>
 
+        {/* Google Ads Tag */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17453484782" strategy="afterInteractive" />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17453484782');`}
+        </Script>
+
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="vdy3-T5PZLrGW6cxxYOJADMljTpOJVY_IausX-HKMvY" />
 
