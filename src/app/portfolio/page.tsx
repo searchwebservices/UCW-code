@@ -66,32 +66,31 @@ export default function PortfolioPage() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-24 pt-16 border-t border-[#CAC6C0] text-center">
-          <p className="font-display text-[32px] md:text-[48px] text-black mb-4 leading-tight">
-            Inspired? Let&apos;s plan yours.
-          </p>
-          <p className="text-[#4D4D4D] text-[18px] mb-8">
-            Free consultation. No pressure. Just Luba and your vision.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-[#065f75] transition-colors duration-200"
-            >
-              Get a Free Consultation
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
-            </a>
-            <a
-              href="tel:+526241220146"
-              className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200"
-            >
-              Call Luba Directly
-            </a>
+          {/* Bottom CTA */}
+          <div className="mt-24 pt-16 border-t border-[#CAC6C0] text-center">
+            <p className="font-display text-[32px] md:text-[48px] text-black mb-4 leading-tight">
+              Inspired? Let&apos;s plan yours.
+            </p>
+            <p className="text-[#4D4D4D] text-[18px] mb-8">
+              Free consultation. No pressure. Just Luba and your vision.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-[#065f75] transition-colors duration-200"
+              >
+                Get a Free Consultation
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+              </a>
+              <a
+                href="tel:+526241220146"
+                className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200"
+              >
+                Call Luba Directly
+              </a>
+            </div>
           </div>
-        </div>
         </div>
       </section>
 
