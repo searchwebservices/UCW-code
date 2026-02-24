@@ -15,10 +15,9 @@ const Navbar = () => {
   }, []);
 
   const menuLinks = [
-    { name: "HOME", href: "/" },
-    { name: "PORTFOLIO", href: "/portfolio" },
-    { name: "CONTACT", href: "/contact" },
-    { name: "CONCIERGE", href: "https://uniqueconcierge.netlify.app/", external: true },
+    { name: "Home", href: "/" },
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const externalLinks = [
@@ -81,41 +80,32 @@ const Navbar = () => {
           <div className="container mx-auto flex-grow flex flex-col justify-center items-center py-12">
 
             {/* Primary Page Links */}
-            <div className="flex flex-col items-center gap-8 mb-16">
-              {menuLinks.map((link, index) => (
-                link.external ? (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn(
-                      "text-[2rem] md:text-[3.5rem] font-sans font-medium tracking-[0.1em] uppercase hover:italic hover:text-[#087B97] transition-all duration-300",
-                      index % 2 === 0 ? "font-display italic" : "font-sans"
-                    )}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={cn(
-                      "text-[2rem] md:text-[3.5rem] font-sans font-medium tracking-[0.1em] uppercase hover:italic hover:text-[#087B97] transition-all duration-300",
-                      index % 2 === 0 ? "font-display italic" : "font-sans"
-                    )}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                )
+            <div className="flex flex-col items-center gap-4 mb-12">
+              {menuLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="font-display text-[3rem] md:text-[5rem] leading-[1.05] text-black hover:text-[#087B97] hover:italic transition-all duration-300"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
               ))}
             </div>
 
-            {/* External Links (Smaller) */}
-            <div className="flex flex-col items-center mb-16 animate-in fade-in slide-in-from-top-4 duration-700 delay-100">
-              <div className="flex gap-8">
+            {/* Primary CTA Button */}
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-[#065f75] transition-colors duration-200 mb-14"
+              onClick={() => setIsOpen(false)}
+            >
+              Plan My Cabo Wedding
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+            </a>
+
+            {/* Bottom Info Bar */}
+            <div className="w-full max-w-5xl flex justify-between items-end border-t border-[#CAC6C0] pt-8 px-8">
+              <div className="flex gap-6">
                 {externalLinks.map((link) => (
                   <a
                     key={link.name}
@@ -127,13 +117,6 @@ const Navbar = () => {
                     {link.name}
                   </a>
                 ))}
-              </div>
-            </div>
-
-            {/* Bottom Info Bar */}
-            <div className="w-full max-w-5xl flex justify-between items-end border-t border-[#CAC6C0] pt-12 px-8">
-              <div className="flex flex-col">
-                <span className="font-display italic text-xl text-[#444444]">Unique Cabo Weddings</span>
               </div>
               <div className="text-[0.875rem] text-[#4D4D4D] font-sans">
                 © Copyright 2026
