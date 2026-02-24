@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { TrackedPhoneLink } from "@/components/tracked-links";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
@@ -22,17 +21,12 @@ export default function StickyCTA() {
       <p className="font-display text-[18px] md:text-[22px] text-white text-center sm:text-left">
         Your dream Cabo wedding is one conversation away.
       </p>
-      <div className="flex gap-3 shrink-0">
-        <TrackedPhoneLink className="inline-flex items-center gap-2 border border-white text-white text-[12px] font-bold uppercase tracking-[0.15em] px-5 py-3 hover:bg-white hover:text-[#087B97] transition-colors duration-200 whitespace-nowrap">
-          Call Now
-        </TrackedPhoneLink>
-        <a
-          href="/contact"
-          className="inline-flex items-center gap-2 bg-white text-[#087B97] text-[12px] font-bold uppercase tracking-[0.15em] px-5 py-3 hover:bg-[#F5F1EB] transition-colors duration-200 whitespace-nowrap"
-        >
-          Plan My Wedding →
-        </a>
-      </div>
+      <a
+        href="/contact"
+        className="inline-flex items-center gap-2 bg-white text-[#087B97] text-[12px] font-bold uppercase tracking-[0.15em] px-8 py-3 hover:bg-[#F5F1EB] transition-colors duration-200 whitespace-nowrap"
+      >
+        Plan My Wedding →
+      </a>
     </div>
   );
 }

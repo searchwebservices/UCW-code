@@ -3,7 +3,6 @@ import Navbar from "@/components/sections/navbar";
 import Footer from "@/components/sections/footer";
 import PortfolioGallery from "@/components/portfolio/portfolio-gallery";
 import PortfolioNavigation from "@/components/portfolio/portfolio-navigation";
-import { TrackedPhoneLink } from "@/components/tracked-links";
 import { getWeddingBySlug, getAdjacentWeddings, portfolioWeddings } from "@/lib/portfolio-data";
 
 export function generateStaticParams() {
@@ -53,9 +52,12 @@ export default async function PortfolioPage({ params }: PageProps) {
                 Plan My Cabo Wedding
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
-              <TrackedPhoneLink className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-black hover:text-white transition-colors duration-200">
-                Call Luba Now
-              </TrackedPhoneLink>
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-black hover:text-white transition-colors duration-200"
+              >
+                Start Planning Now
+              </a>
             </div>
           </div>
 
@@ -79,9 +81,12 @@ export default async function PortfolioPage({ params }: PageProps) {
                 Get a Free Consultation
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
-              <TrackedPhoneLink className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200">
-                Call Luba Directly
-              </TrackedPhoneLink>
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200"
+              >
+                Start Planning Now
+              </a>
             </div>
           </div>
         </div>
