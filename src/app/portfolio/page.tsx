@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/sections/navbar";
 import Footer from "@/components/sections/footer";
+import { TrackedPhoneLink } from "@/components/tracked-links";
 import { portfolioWeddings } from "@/lib/portfolio-data";
 
 export default function PortfolioPage() {
@@ -83,12 +84,9 @@ export default function PortfolioPage() {
                 Get a Free Consultation
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
               </a>
-              <a
-                href="tel:+526241220146"
-                className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200"
-              >
+              <TrackedPhoneLink className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200">
                 Call Luba Directly
-              </a>
+              </TrackedPhoneLink>
             </div>
           </div>
         </div>
