@@ -6,8 +6,9 @@ import ServicesSection from "@/components/sections/services";
 import PortfolioPreview from "@/components/sections/portfolio-preview";
 import Testimonials from "@/components/sections/testimonials";
 import FAQ from "@/components/sections/faq";
-import ConciergeSection from "@/components/sections/concierge";
+// import ConciergeSection from "@/components/sections/concierge"; // Temporarily hidden
 import Footer from "@/components/sections/footer";
+import StickyCTA from "@/components/sections/sticky-cta";
 
 export default function Home() {
   return (
@@ -20,8 +21,9 @@ export default function Home() {
       <PortfolioPreview />
       <Testimonials />
       <FAQ />
-      <ConciergeSection />
+      {/* <ConciergeSection /> Temporarily hidden */}
       <Footer />
+      <StickyCTA />
     </main>
   );
 }

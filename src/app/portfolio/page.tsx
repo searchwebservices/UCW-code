@@ -16,9 +16,19 @@ export default function PortfolioPage() {
             <span className="text-[#087B97] text-[11px] font-bold uppercase tracking-[0.2em] mb-4 block">
               Our Gallery
             </span>
-            <h1 className="font-display text-[48px] md:text-[72px] text-black leading-tight">
+            <h1 className="font-display text-[48px] md:text-[72px] text-black leading-tight mb-6">
               Our Portfolio
             </h1>
+            <p className="text-[#4D4D4D] text-[18px] max-w-[560px] mx-auto mb-8 leading-relaxed">
+              Every wedding is a reflection of the couple. Browse our work — then let&apos;s talk about yours.
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-[#065f75] transition-colors duration-200"
+            >
+              Plan My Cabo Wedding
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+            </a>
           </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
@@ -56,6 +66,32 @@ export default function PortfolioPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-24 pt-16 border-t border-[#CAC6C0] text-center">
+          <p className="font-display text-[32px] md:text-[48px] text-black mb-4 leading-tight">
+            Inspired? Let&apos;s plan yours.
+          </p>
+          <p className="text-[#4D4D4D] text-[18px] mb-8">
+            Free consultation. No pressure. Just Luba and your vision.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-[#065f75] transition-colors duration-200"
+            >
+              Get a Free Consultation
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+            </a>
+            <a
+              href="tel:+526241220146"
+              className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-black hover:text-white transition-colors duration-200"
+            >
+              Call Luba Directly
+            </a>
+          </div>
+        </div>
         </div>
       </section>
 

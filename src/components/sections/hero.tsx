@@ -54,16 +54,20 @@ import Image from 'next/image';
               </h1>
           </div>
 
-          {/* CTA Link */}
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-            <a 
-              href="/contact" 
-              className="group inline-flex flex-col items-start"
+          {/* CTA Buttons */}
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500 flex flex-col sm:flex-row gap-4">
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-[#065f75] transition-colors duration-200"
             >
-              <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-black mb-1">
-                Get in Touch
-              </span>
-              <span className="h-[1px] w-[100px] bg-black transition-all duration-300 group-hover:w-[60px]" />
+              Plan My Cabo Wedding
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+            </a>
+            <a
+              href="tel:+526241220146"
+              className="inline-flex items-center justify-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-black hover:text-white transition-colors duration-200"
+            >
+              Call Luba Now
             </a>
           </div>
         </div>

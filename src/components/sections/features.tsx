@@ -75,6 +75,20 @@ const Features = () => {
           </div>
 
         </div>
+
+        {/* CTA */}
+        <div className="mt-20 pt-16 border-t border-[#CAC6C0] flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <p className="font-display text-[22px] md:text-[28px] text-black max-w-[420px] leading-tight">
+            Ready to start planning your Cabo wedding?
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#087B97] text-white text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-[#065f75] transition-colors duration-200 whitespace-nowrap"
+          >
+            Get a Free Consultation
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+          </a>
+        </div>
       </div>
     </section>
   );
