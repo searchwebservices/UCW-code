@@ -230,13 +230,13 @@ export default function ContactForm() {
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground/60 block mb-2">Call Us</span>
                 <a
-                  href="tel:+526241220146"
+                  href="tel:+526241840829"
                   onClick={() => {
                     if (typeof window !== 'undefined') {
                       (window as Record<string, unknown[]>).dataLayer = (window as Record<string, unknown[]>).dataLayer || [];
                       (window as Record<string, unknown[]>).dataLayer.push({
                         'event': 'click_to_call',
-                        'phone_number': '+526241220146',
+                        'phone_number': '+526241840829',
                         'click_location': window.location.pathname,
                         'conversion_value': 150,
                       });
@@ -244,7 +244,7 @@ export default function ContactForm() {
                   }}
                   className="text-lg font-sans hover:text-accent transition-colors"
                 >
-                  +52 (624) 122 0146
+                  +52 (624) 184 0829
                 </a>
               </div>
               <div>

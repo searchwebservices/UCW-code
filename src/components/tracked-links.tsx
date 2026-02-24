@@ -19,11 +19,11 @@ export function TrackedPhoneLink({
 }) {
   return (
     <a
-      href="tel:+526241220146"
+      href="tel:+526241840829"
       onClick={() =>
         pushToDataLayer({
           event: "click_to_call",
-          phone_number: "+526241220146",
+          phone_number: "+526241840829",
           click_location:
             typeof window !== "undefined" ? window.location.pathname : "",
           conversion_value: 150,

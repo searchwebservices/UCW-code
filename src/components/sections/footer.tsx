@@ -106,7 +106,7 @@ const Footer = () => {
                 <div className="flex items-center gap-3">
                   <Phone size={16} className="text-black" />
                   <TrackedPhoneLink className="text-[13px] font-medium text-black hover:text-[#087B97] transition-colors">
-                    +52 (624) 122 0146
+                    +52 (624) 184 0829
                   </TrackedPhoneLink>
                 </div>
 

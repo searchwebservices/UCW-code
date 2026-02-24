@@ -9,7 +9,7 @@ export default function SuccessPage() {
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const phone = "+52 (624) 122 0146";
+  const phone = "+52 (624) 184 0829";
   const email = "luba@uniquecaboweddings.com";
 
   const copyToClipboard = async (text: string, type: "phone" | "email") => {

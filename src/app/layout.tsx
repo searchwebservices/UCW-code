@@ -98,7 +98,7 @@ const structuredData = {
   url: siteUrl,
   logo: faviconUrl,
   image: ogImage,
-  telephone: "+52-624-122-0146",
+  telephone: "+52-624-184-0829",
   email: "luba@uniquecaboweddings.com",
   address: {
     "@type": "PostalAddress",
