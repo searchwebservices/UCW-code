@@ -5,6 +5,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+const portfolioFeature = [
+  {
+    couple: "Nicole & Chris",
+    description: "Elegant villa · White florals · Ocean views",
+    slug: "nicole-chris",
+    images: [
+      { src: "https://i.imgur.com/rywyuYx.jpeg", alt: "Nicole & Chris — ceremony", aspect: "portrait" },
+      { src: "https://i.imgur.com/4aIs2s4.jpeg", alt: "Nicole & Chris — reception", aspect: "landscape" },
+      { src: "https://i.imgur.com/eGihBLj.jpeg", alt: "Nicole & Chris — portraits", aspect: "portrait" },
+    ],
+  },
+  {
+    couple: "Ayana & Austin",
+    description: "Beachside celebration · Bright florals · Ocean breeze",
+    slug: "ayana-austin",
+    images: [
+      { src: "https://i.imgur.com/JlH5bzw.jpeg", alt: "Ayana & Austin — ceremony", aspect: "portrait" },
+      { src: "https://i.imgur.com/WlOW0hT.jpeg", alt: "Ayana & Austin — reception", aspect: "landscape" },
+      { src: "https://i.imgur.com/uAQWeAs.jpeg", alt: "Ayana & Austin — portraits", aspect: "landscape" },
+    ],
+  },
+  {
+    couple: "Shivani & Brendin",
+    description: "South Asian traditions · Bold color · Cabo warmth",
+    slug: "shivani-brendin",
+    images: [
+      { src: "https://i.imgur.com/Zi5zvMA.jpeg", alt: "Shivani & Brendin — ceremony", aspect: "portrait" },
+      { src: "https://i.imgur.com/7q4Pd2A.jpeg", alt: "Shivani & Brendin — celebration", aspect: "landscape" },
+      { src: "https://i.imgur.com/CRWKDE8.jpeg", alt: "Shivani & Brendin — portraits", aspect: "portrait" },
+    ],
+  },
+];
+
 export default function StartPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,6 +107,7 @@ export default function StartPage() {
         </span>
       </header>
 
+      {/* Hero + Form */}
       <div className="container mx-auto max-w-[1100px] px-6 md:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
@@ -251,6 +285,119 @@ export default function StartPage() {
 
         </div>
       </div>
+
+      {/* Portfolio imagery — real weddings */}
+      <section className="border-t border-[#CAC6C0] bg-white py-20 md:py-28">
+        <div className="container mx-auto max-w-[1100px] px-6 md:px-8">
+          <div className="text-center mb-14">
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#087B97] mb-3">
+              Real Weddings
+            </p>
+            <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-[1.05] text-black">
+              Every Wedding Tells a Story
+            </h2>
+          </div>
+
+          <div className="space-y-16">
+            {portfolioFeature.map((wedding) => (
+              <div key={wedding.slug}>
+                {/* Couple label */}
+                <div className="flex items-baseline justify-between mb-5">
+                  <div>
+                    <span className="font-display text-[1.5rem] md:text-[2rem] text-black">{wedding.couple}</span>
+                    <span className="ml-4 text-[13px] text-[#4D4D4D]/60">{wedding.description}</span>
+                  </div>
+                  <Link
+                    href={`/portfolio/${wedding.slug}`}
+                    className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#087B97] hover:underline hidden sm:block"
+                  >
+                    View Wedding →
+                  </Link>
+                </div>
+
+                {/* 3-image grid: portrait | landscape stacked */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {/* First image — portrait, spans 1 column, 2 rows */}
+                  <div className="relative aspect-[3/4] overflow-hidden row-span-2 col-span-1">
+                    <Image
+                      src={wedding.images[0].src}
+                      alt={wedding.images[0].alt}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                  </div>
+                  {/* Second image — landscape */}
+                  <div className="relative aspect-[4/3] overflow-hidden md:col-span-2">
+                    <Image
+                      src={wedding.images[1].src}
+                      alt={wedding.images[1].alt}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 50vw, 66vw"
+                    />
+                  </div>
+                  {/* Third image — fills remaining space */}
+                  <div className="relative aspect-[4/3] overflow-hidden md:col-span-2">
+                    <Image
+                      src={wedding.images[2].src}
+                      alt={wedding.images[2].alt}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 50vw, 66vw"
+                    />
+                  </div>
+                </div>
+
+                {/* Mobile view wedding link */}
+                <div className="mt-4 sm:hidden">
+                  <Link
+                    href={`/portfolio/${wedding.slug}`}
+                    className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#087B97]"
+                  >
+                    View Wedding →
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* View full portfolio link */}
+          <div className="text-center mt-14">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 border border-black text-black text-[13px] font-bold uppercase tracking-[0.15em] px-8 py-4 hover:bg-black hover:text-white transition-colors duration-200"
+            >
+              View Full Portfolio
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="bg-[#087B97] py-20 md:py-28 text-center">
+        <div className="container mx-auto max-w-[700px] px-6 md:px-8">
+          <h2 className="font-display text-[2.5rem] md:text-[4rem] leading-[1.0] text-white mb-6">
+            Ready to Start Planning?
+          </h2>
+          <p className="text-white/80 text-[17px] leading-relaxed mb-10">
+            Luba has planned 500+ Cabo celebrations. Reach out today — your free consultation is one message away.
+          </p>
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="inline-flex items-center gap-2 bg-white text-[#087B97] text-[13px] font-bold uppercase tracking-[0.15em] px-10 py-4 hover:bg-[#F5F1EB] transition-colors duration-200"
+          >
+            Get My Free Consultation
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
+      </section>
     </main>
   );
 }
